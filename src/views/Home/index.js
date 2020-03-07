@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPost, removePost } from '../../store/actions';
+import { Icon, Label } from 'semantic-ui-react'
 
 const Home = () => {
   const { posts } = useSelector(state => ({
@@ -15,7 +16,12 @@ const Home = () => {
   return (
     <div>
       {
-        posts.map(post => (<div key={post.id}>{post.title} <button onClick={removePostAction(post)}>-</button></div>))
+        posts.map(post => (
+          <Label key={post.id} image>
+            {post.title}
+            <Icon name='delete' onClick={removePostAction(post)} />
+          </Label>
+        ))
       }
       <button onClick={addPostAction}>+</button>
     </div>

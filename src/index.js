@@ -5,6 +5,9 @@ import { Route, Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 import * as serviceWorker from './serviceWorker';
 
+// Theme
+import 'semantic-ui-css/semantic.min.css'
+
 // Views
 import Home from './views/Home';
 import PostDetails from './views/PostDetails';
