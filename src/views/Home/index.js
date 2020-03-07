@@ -1,28 +1,25 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addPost, removePost } from '../../store/actions';
 
-const Home = (props) => (
-  <div>
-    <button onClick={props.add}>+</button>
-    <button onClick={props.remove}>-</button>
-  </div>
-);
+const Home = () => {
+  const { posts } = useSelector(state => ({
+    posts: state.posts,
+  }));
 
-Home.propTypes = {
-  posts: PropTypes.object,
-  add: PropTypes.func.isRequired,
-  remove: PropTypes.func.isRequired,
+  // Actions
+  const dispatch = useDispatch();
+  const addPostAction = () => dispatch(addPost({ id: Date.now(), title: "test post" }));
+  const removePostAction = postId => () => dispatch(removePost(postId));
+
+  return (
+    <div>
+      {
+        posts.map(post => (<div key={post.id}>{post.title} <button onClick={removePostAction(post)}>-</button></div>))
+      }
+      <button onClick={addPostAction}>+</button>
+    </div>
+  );
 };
 
-const mapStateToProps = state => ({
-  posts: state.posts,
-});
-
-const mapDispatchToProps = dispatch => ({
-  add: () => dispatch(addPost()),
-  remove: () => dispatch(removePost()),
-});
-
-export default Home; //connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;

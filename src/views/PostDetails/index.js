@@ -1,7 +1,7 @@
 import React from 'react';
 
-function Home () {
+function PostDetails () {
   return <div>Post sample</div>;
 }
 
-export default Home;
+export default PostDetails;

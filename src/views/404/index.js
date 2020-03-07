@@ -1,7 +1,7 @@
 import React from 'react';
 
-function Home () {
-  return <div>Test home</div>;
+function NotFoundPage () {
+  return <div>Page Not Found. Error: 404</div>;
 }
 
-export default Home;
+export default NotFoundPage;

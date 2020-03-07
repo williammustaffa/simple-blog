@@ -1,5 +1,6 @@
-export default function addPost() {
+export default function addPost(payload) {
   return {
-    type: 'add',
+    type: 'addPost',
+    payload,
   };
 };

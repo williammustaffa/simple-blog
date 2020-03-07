@@ -7,21 +7,23 @@ import * as serviceWorker from './serviceWorker';
 
 // Views
 import Home from './views/Home';
-import Post from './views/Post';
+import PostDetails from './views/PostDetails';
 
 // Store
 import configureStore, { history } from './store/history';
 
-const store = configureStore(/* provide initial state if any */)
+const store = configureStore({
+  posts: [{ id: 1, title: "post example" }]
+});
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
     <div>
       <Switch>
-      <Route exact path="/" render={Home} />
-      <Route exact path="/post" render={Post} />
-      <Route render={() => (<div>Miss</div>)} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/post" component={PostDetails} />
+        <Route render={() => (<div>Miss</div>)} />
       </Switch>
     </div>
     </ConnectedRouter>
