@@ -1,18 +1,17 @@
+import Post from "../models/Post";
 
-
-const reducer = (state = [], action) => {
-  console.log('PRAIA', state, action);
-  switch (action.type) {
+const reducer = (posts = [], { type, payload }) => {
+  switch (type) {
     case 'addPost':
-      state.push(action.payload);
-      return state;
+      posts.push(new Post(payload));
+      return posts;
     case 'removePost':
-      state = state
-        .filter(post => post.id !== action.payload.id);
-      return state;
+      posts = posts
+        .filter(post => post.id !== payload.id);
+      return posts;
 
     default:
-      return state;
+      return posts;
   }
 }
 

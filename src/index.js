@@ -1,34 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Route, Switch } from 'react-router';
 import { ConnectedRouter } from 'connected-react-router';
 import * as serviceWorker from './serviceWorker';
-
-// Theme
-import 'semantic-ui-css/semantic.min.css'
-
-// Views
-import Home from './views/Home';
-import PostDetails from './views/PostDetails';
+import App from './App';
 
 // Store
 import configureStore, { history } from './store/history';
 
-const store = configureStore({
-  posts: [{ id: 1, title: "post example" }]
-});
+const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-    <div>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/post" component={PostDetails} />
-        <Route render={() => (<div>Miss</div>)} />
-      </Switch>
-    </div>
+      <App />
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
