@@ -1,7 +1,7 @@
-import addPost from "./addPost";
-import removePost from "./removePost";
+import createPost from "./createPost";
+import deletePost from "./deletePost";
 
 export {
-  addPost,
-  removePost,
+  createPost,
+  deletePost,
 };

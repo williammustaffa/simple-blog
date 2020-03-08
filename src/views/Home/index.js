@@ -1,7 +1,9 @@
 import React from 'react';
+import { Grid } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPost, removePost } from '../../store/actions';
-import { Icon, Label } from 'semantic-ui-react'
+import { createPost } from '../../store/actions';
+
+import PostCard from '../../components/PostCard';
 
 const Home = () => {
   const { posts } = useSelector(state => ({
@@ -10,21 +12,21 @@ const Home = () => {
 
   // Actions
   const dispatch = useDispatch();
-  const addPostAction = () => dispatch(addPost({ id: Date.now(), title: "test post" }));
-  const removePostAction = postId => () => dispatch(removePost(postId));
+  const addPostAction = () => dispatch(createPost({ id: Date.now(), title: "test post" }));
+
+  const renderPostCard = post => (
+    <Grid.Column key={post.id} stretched mobile={16} tablet={8} computer={4}>
+      <PostCard post={post} />
+    </Grid.Column>
+  );
 
   return (
-    <div>
-      {
-        posts.map(post => (
-          <Label key={post.id} image>
-            {post.title}
-            <Icon name='delete' onClick={removePostAction(post)} />
-          </Label>
-        ))
-      }
-      <button onClick={addPostAction}>+</button>
-    </div>
+    <Grid>
+      {posts.map(renderPostCard)}
+      <Grid.Column>
+        <button onClick={addPostAction}>+</button>
+      </Grid.Column>
+    </Grid>
   );
 };
 

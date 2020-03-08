@@ -1,7 +1,8 @@
 class Post {
   constructor(payload) {
-    this.id = payload.id || payload.id;
+    this.id = String(payload.id);
     this.author = payload.autor;
+    this.creationDate = payload.creationDate;
     this.title = payload.title || "Untitled";
     this.content = payload.content || "";
     this.categories = payload.categories || [];

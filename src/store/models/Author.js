@@ -6,6 +6,7 @@
     this.descriptions = payload.description;
     this.birthDate = payload.birthDate;
     this.email = payload.email;
+    this.registrationDate = payload.registrationDate;
   }
 }
 
