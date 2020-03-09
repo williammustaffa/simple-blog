@@ -6,6 +6,7 @@ import Header from './components/Header';
 // Views
 import Home from './views/Home';
 import PostDetails from './views/PostDetails';
+import NotFoundPage from './views/NotFoundPage';
 
 // Theme
 import 'semantic-ui-css/semantic.min.css'
@@ -16,8 +17,8 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/post" component={PostDetails} />
-        <Route render={() => (<div>Miss</div>)} />
+        <Route exact path="/post/:id/:name" component={PostDetails} />
+        <Route component={NotFoundPage} />
       </Switch>
     </Container>
   );

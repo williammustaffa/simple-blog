@@ -1,23 +1,30 @@
-import React, { useState } from 'react'
-import { Button, Menu } from 'semantic-ui-react'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { push } from 'connected-react-router';
+import { Button, Menu } from 'semantic-ui-react';
 
 const Navigation = () => {
-  const [activeItem, setActiveItem] = useState('home')
+  const [activeItem, setActiveItem] = useState('home');
 
-  const handleItemClick = (e, { name }) => setActiveItem(name);
+  const dispatch = useDispatch();
+  const navigateTo = (path) => dispatch(push(path));
 
+  const handleMenuItemClick = path => (e, { name }) => {
+    navigateTo(path);
+    setActiveItem(name);
+  };
 
   return (
     <Menu>
       <Menu.Item
         name='home'
         active={activeItem === 'home'}
-        onClick={handleItemClick}
+        onClick={handleMenuItemClick('/')}
       />
       <Menu.Item
         name='dashboard'
-        active={activeItem === 'dasboardh'}
-        onClick={handleItemClick}
+        active={activeItem === 'dashboard'}
+        onClick={handleMenuItemClick('/dashboard')}
       />
 
       <Menu.Menu position='right'>

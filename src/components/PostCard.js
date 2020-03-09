@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { push } from 'connected-react-router';
 import { useDispatch } from 'react-redux';
 import { Card, Label, Icon } from 'semantic-ui-react'
 import { deletePost } from '../store/actions';
@@ -7,6 +8,7 @@ import { deletePost } from '../store/actions';
 const PostCard = ({ post }) => {
   const dispatch = useDispatch();
   const deletePostAction = () => dispatch(deletePost(post));
+  const navigateTo = path => () => dispatch(push(path));
 
   const removePostIcon = (
     <Label key={post.id} image>
@@ -14,6 +16,9 @@ const PostCard = ({ post }) => {
       <Icon name='delete' onClick={() => deletePostAction(post)} />
     </Label>
   );
+
+  const postUrl = `/post/${post.id}/${post.title}`
+    .replace(/\s/gi, "-");
 
   return (
     <Card
@@ -23,6 +28,7 @@ const PostCard = ({ post }) => {
       meta='by @williammustaffa'
       description='Elliot is a sound engineer living in Nashville who enjoys playing guitar and hanging with his cat.'
       extra={removePostIcon}
+      onClick={navigateTo(postUrl)}
     />
   );
 }

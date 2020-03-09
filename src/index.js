@@ -3,12 +3,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import * as serviceWorker from './serviceWorker';
+import { generateStore, history } from './store';
 import App from './App';
 
-// Store
-import configureStore, { history } from './store/history';
-
-const store = configureStore();
+const store = generateStore();
 
 ReactDOM.render(
   <Provider store={store}>
