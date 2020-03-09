@@ -1,8 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Grid, Header, Button, Segment } from 'semantic-ui-react';
+import React from "react";
+import { push } from "connected-react-router";
+import { Grid, Header, Button, Segment } from "semantic-ui-react";
+import { useDispatch } from "react-redux";
 
 function NotFoundPage () {
+  const dispatch = useDispatch();
+  const navigateTo = path => () => dispatch(push(path));
+
   return (
     <Grid centered>
       <Grid.Row>
@@ -12,9 +16,7 @@ function NotFoundPage () {
               It seems you got lost.
               <Header.Subheader>This page doesn't exist...</Header.Subheader>
             </Header>
-            <Link to="/">
-              <Button secondary>Go to homepage</Button>
-            </Link>
+            <Button secondary onClick={navigateTo('/')}>Go to homepage</Button>
           </Segment>
         </Grid.Column>
       </Grid.Row>

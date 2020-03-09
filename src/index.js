@@ -1,12 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
-import * as serviceWorker from './serviceWorker';
-import { generateStore, history } from './store';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { ConnectedRouter } from "connected-react-router";
+import * as serviceWorker from "./serviceWorker";
+import { generateStore, history } from "./store";
+import App from "./App";
+import Post from "./store/models/Post";
 
-const store = generateStore();
+const store = generateStore({
+  posts: [],
+  post: new Post(),
+});
 
 ReactDOM.render(
   <Provider store={store}>
@@ -14,7 +18,7 @@ ReactDOM.render(
       <App />
     </ConnectedRouter>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

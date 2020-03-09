@@ -7,10 +7,9 @@ const Navigation = () => {
   const [activeItem, setActiveItem] = useState('home');
 
   const dispatch = useDispatch();
-  const navigateTo = (path) => dispatch(push(path));
 
-  const handleMenuItemClick = path => (e, { name }) => {
-    navigateTo(path);
+  const navigateTo = path => (e, { name }) => {
+    dispatch(push(path));
     setActiveItem(name);
   };
 
@@ -19,12 +18,12 @@ const Navigation = () => {
       <Menu.Item
         name='home'
         active={activeItem === 'home'}
-        onClick={handleMenuItemClick('/')}
+        onClick={navigateTo('/')}
       />
       <Menu.Item
         name='dashboard'
         active={activeItem === 'dashboard'}
-        onClick={handleMenuItemClick('/dashboard')}
+        onClick={navigateTo('/dashboard')}
       />
 
       <Menu.Menu position='right'>

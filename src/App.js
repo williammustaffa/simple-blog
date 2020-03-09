@@ -1,15 +1,15 @@
-import React from 'react';
-import { Container } from 'semantic-ui-react';
-import { Route, Switch } from 'react-router';
-import Header from './components/Header';
+import React from "react";
+import { Container } from "semantic-ui-react";
+import { Route, Switch } from "react-router";
+import Header from "./components/Header";
 
 // Views
-import Home from './views/Home';
-import PostDetails from './views/PostDetails';
-import NotFoundPage from './views/NotFoundPage';
+import Home from "./views/Home";
+import PostDetails from "./views/PostDetails";
+import NotFoundPage from "./views/NotFoundPage";
 
 // Theme
-import 'semantic-ui-css/semantic.min.css'
+import "semantic-ui-css/semantic.min.css"
 
 const App = () => {
   return (

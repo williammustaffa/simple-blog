@@ -1,4 +1,4 @@
-import groupArray from './groupArray';
+import groupArray from "./groupArray";
 
 export default {
   groupArray,
