@@ -6,6 +6,7 @@ import Header from "./components/Header";
 // Views
 import Home from "./views/Home";
 import PostDetails from "./views/PostDetails";
+import Register from "./views/Register";
 import NotFoundPage from "./views/NotFoundPage";
 
 // Theme
@@ -17,6 +18,7 @@ const App = () => {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/register" component={Register} />
         <Route exact path="/post/:id/:name" component={PostDetails} />
         <Route component={NotFoundPage} />
       </Switch>

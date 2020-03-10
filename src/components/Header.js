@@ -1,7 +1,7 @@
-import React from 'react';
-import { Grid, Image } from 'semantic-ui-react';
-import Navigation from './Navigation';
-import logo from '../assets/images/logo.svg';
+import React from "react";
+import { Grid, Image } from "semantic-ui-react";
+import Navigation from "./Navigation";
+import logo from "../assets/images/logo.svg";
 
 const Header = () => {
   return (
