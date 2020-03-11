@@ -3,16 +3,14 @@ import types from "../types";
 
 const reducer = (state = [], { type, payload }) => {
   switch (type) {
-    case type.FETCH_POST:
-      state = new Post();
-      return state;
+    case types.FETCH_POST:
+      return { ...state, isFetching: true, item: new Post(), errorMessage: '' };
 
     case types.FETCH_POST_SUCCESS:
-      state = new Post(payload);
-      return state;
+      return { ...state, isFetching: false, item: new Post(payload) };
 
     case types.FETCH_POST_FAILURE:
-      return state;
+      return { ...state, isFetching: false, errorMessage: payload.message };
 
     default:
       return state;

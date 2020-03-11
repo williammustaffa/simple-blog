@@ -8,8 +8,8 @@ import App from "./App";
 import Post from "./store/models/Post";
 
 const store = generateStore({
-  posts: [],
-  post: new Post(),
+  posts: { isFetching: false, items: [], errorMessage: "" },
+  post: { isFetching: false, item: new Post(), errorMessage: "" },
 });
 
 ReactDOM.render(

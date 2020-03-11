@@ -3,7 +3,8 @@ import Author from "./Author";
 class Post {
   constructor(payload = {}) {
     this.id = payload.id || "";
-    this.author = payload.autor || new Author();
+    this.imageUrl = payload.imageUrl || "";
+    this.author = new Author(payload.author);
     this.creationDate = payload.creationDate || "";
     this.title = payload.title|| "";
     this.content = payload.content || "";

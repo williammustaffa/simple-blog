@@ -1,15 +1,5 @@
-const posts = {
-  items: [{
-    id: "1",
-    title: "Post test 1",
-    content: "asdasd adsasda asd asd asdas dadsadasdasd asd asd\basdasdasd\basdasdasd",
-  },
-  {
-    id: "2",
-    title: "Post test 2",
-    content: "asdasd adsasda asd asd asdas dadsadasdasd asd asd\basdasdasd\basdasdasd",
-  }]
-};
+
+import LocalDB from "../LocalDB";
 
 const retrieveDataDelayed = (value) => {
   return new Promise(resolve => {
@@ -26,15 +16,31 @@ class BlogAPI {
 
   }
 
+  createProfile() {
+
+  }
+
   fetchPost(id) {
-    const targetPost = posts.items
+    const { posts, profiles } = LocalDB;
+
+    const response = posts
       .find(post => String(post.id) === String(id));
 
-    return retrieveDataDelayed(targetPost);
+    if (response) {
+      response.author = profiles
+        .find(profile => String(profile.id) === String(response.author));
+    }
+
+    return retrieveDataDelayed(response);
   }
 
   fetchPosts() {
-    return retrieveDataDelayed(posts);
+    const { posts } = LocalDB;
+    const response = {
+      items: posts,
+    };
+
+    return retrieveDataDelayed(response);
   }
 }
 

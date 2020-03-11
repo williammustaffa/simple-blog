@@ -5,7 +5,7 @@ import logo from "../assets/images/logo.svg";
 
 const Header = () => {
   return (
-    <Grid centered>
+    <Grid centered style={{ marginBottom: '4em' }}>
       <Grid.Row>
         <Grid.Column mobile={16} tablet={8} computer={4}>
           <Image src={logo} fluid />

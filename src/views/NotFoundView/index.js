@@ -3,7 +3,7 @@ import { push } from "connected-react-router";
 import { Grid, Header, Button, Segment } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
 
-function NotFoundPage () {
+function NotFoundView() {
   const dispatch = useDispatch();
   const navigateTo = path => () => dispatch(push(path));
 
@@ -24,4 +24,4 @@ function NotFoundPage () {
   );
 }
 
-export default NotFoundPage;
+export default NotFoundView;

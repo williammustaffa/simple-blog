@@ -1,28 +1,42 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Container } from "semantic-ui-react";
 import { Route, Switch } from "react-router";
+
+// Common components
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 // Views
-import Home from "./views/Home";
-import PostDetails from "./views/PostDetails";
-import Register from "./views/Register";
-import NotFoundPage from "./views/NotFoundPage";
+import HomeView from "./views/HomeView";
+import LoginView from "./views/LoginView";
+import RegisterView from "./views/RegisterView";
+import PostDetailsView from "./views/PostDetailsView";
+import DashboardView from "./views/DashboardView";
+import EditPostView from "./views/EditPostview";
+import CreatePostView from "./views/CreatePostView";
+import NotFoundView from "./views/NotFoundView";
 
 // Theme
 import "semantic-ui-css/semantic.min.css"
 
 const App = () => {
   return (
-    <Container>
+    <Fragment>
       <Header />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/post/:id/:name" component={PostDetails} />
-        <Route component={NotFoundPage} />
-      </Switch>
-    </Container>
+      <Container>
+        <Switch>
+          <Route exact path="/" component={HomeView} />
+          <Route exact path="/login" component={LoginView} />
+          <Route exact path="/register" component={RegisterView} />
+          <Route exact path="/post/:id/:name" component={PostDetailsView} />
+          <Route exact path="/dashboard" component={DashboardView} />
+          <Route exact path="/post/edit" component={EditPostView} />
+          <Route exact path="/post/create" component={CreatePostView} />
+          <Route component={NotFoundView} />
+        </Switch>
+      </Container>
+      <Footer />
+    </Fragment>
   );
 }
 
