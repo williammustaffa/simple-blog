@@ -1,7 +1,7 @@
 import React from "react";
 import { Loader } from "semantic-ui-react";
 
-import "./style.css";
+import "./style.scss";
 
 function Spinner() {
   return (

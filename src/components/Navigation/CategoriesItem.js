@@ -8,7 +8,7 @@ function CategoriesItem() {
   const dispatch = useDispatch();
   const navigateTo = path => () => dispatch(push(path));
 
-  const { categories } = useSelector(state => ({
+  const { isFetching, categories, errorMessage } = useSelector(state => ({
     isFetching: state.categories.isFetching,
     categories: state.categories.items,
     errorMessage: state.categories.errorMessage,
@@ -18,14 +18,14 @@ function CategoriesItem() {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  console.log("PRAIA", categories);
+  const renderCategoryItem = (category)  => (
+    <Dropdown.Item key={category.id}>{category.displayName}</Dropdown.Item>
+  );
 
   return (
-    <Dropdown item text='Categories'>
+    <Dropdown item text='Categories' loading={isFetching}>
       <Dropdown.Menu>
-        <Dropdown.Item>Funny</Dropdown.Item>
-        <Dropdown.Item>Politics</Dropdown.Item>
-        <Dropdown.Item>Technology</Dropdown.Item>
+        {categories.map(renderCategoryItem)}
       </Dropdown.Menu>
     </Dropdown>
   );

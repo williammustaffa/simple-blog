@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { Grid } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
-import { createPost, fetchPosts } from '../../store/actions';
+import { fetchPosts } from '../../store/actions';
 import Spinner from "../../components/Spinner";
-import PostCard from "../../components/PostCard";
+import PostCard from "./PostCard";
+
+import "./style.scss";
 
 function HomeView() {
   const { isFetching, posts } = useSelector(state => ({
@@ -14,7 +16,6 @@ function HomeView() {
 
   // Actions
   const dispatch = useDispatch();
-  const addPostAction = () => dispatch(createPost({ id: Date.now(), title: "test post" }));
 
   // Component did mount
   useEffect(() => {
@@ -34,9 +35,6 @@ function HomeView() {
   return (
     <Grid>
       {posts.map(renderPostCard)}
-      <Grid.Column>
-        <button onClick={addPostAction}>+</button>
-      </Grid.Column>
     </Grid>
   );
 };

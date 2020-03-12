@@ -1,0 +1,16 @@
+.post-line {
+  display: flex;
+
+  .post-categories {
+    width: 100%;
+  }
+  
+  .post-actions {
+    white-space: nowrap;
+    margin-bottom: 1em;
+  
+    .action-link {
+      margin-right: 10px;
+    }
+  }
+}

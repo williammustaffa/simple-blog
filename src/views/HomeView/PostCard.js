@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import HTMLEllipsis from 'react-lines-ellipsis/lib/html'
 import { push } from 'connected-react-router';
 import { useDispatch } from 'react-redux';
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Label } from 'semantic-ui-react'
 
 function PostCard({ post }) {
   const dispatch = useDispatch();
@@ -12,9 +12,13 @@ function PostCard({ post }) {
   const postUrl = `/post/${post.id}/${post.title}`
     .replace(/\s/gi, "-");
 
+  const renderCategoryLabel = (category) => (
+    <Label color={category.labelColor} size="tiny">{category.displayName}</Label>
+  );
+
   return (
     <Card fluid>
-      <Image src={post.imageUrl} />
+      <div className="card-image" style={{ backgroundImage: `url(${post.imageUrl})` }}></div>
       <Card.Content>
         <Card.Header onClick={navigateTo(postUrl)}>
           <span className="clickable" >{post.title}</span>
@@ -29,15 +33,15 @@ function PostCard({ post }) {
           />
         </Card.Description>
       </Card.Content>
+      <Card.Content extra>
+        {post.categories.map(renderCategoryLabel)}
+      </Card.Content>
     </Card>
   );
 }
 
 PostCard.propTypes = {
-  post: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string,
-  })
+  post: PropTypes.object.isRequired,
 };
 
 export default PostCard;

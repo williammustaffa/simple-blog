@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import RichTextEditor from "react-rte";
 import toolbarConfig from "./toolbarConfig";
 
-import "./style.css";
+import "./style.scss";
 
-function TextEditor({ name, onChange, initialState, label }) {
+function TextEditor({ name, label, defaultValue, onChange, error }) {
   const [editorState, setEditorState] = useState(
-    initialState ?
-    RichTextEditor.createValueFromString(initialState, 'html') :
+    !!defaultValue ?
+    RichTextEditor.createValueFromString(defaultValue, "html") :
     RichTextEditor.createEmptyValue(),
   );
 
@@ -16,15 +17,13 @@ function TextEditor({ name, onChange, initialState, label }) {
     setEditorState(content);
 
     if (onChange) {
-      onChange(null, {
-        name,
-        value: content.toString("html"),
-      });
+      const value = content.toString("html");
+      onChange(null, { name, value });
     }
   }
 
   return (
-    <div className="field">
+    <div className={classNames("field", { error })}>
       {label && <label>{label}</label>}
       <RichTextEditor
         className="custom-editor-style"
@@ -40,8 +39,9 @@ function TextEditor({ name, onChange, initialState, label }) {
 TextEditor.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
+  defaultValue: PropTypes.any,
   onChange: PropTypes.func,
-  initialState: PropTypes.string,
+  error: PropTypes.bool,
 }
 
 export default TextEditor;

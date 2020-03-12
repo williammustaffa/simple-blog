@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Grid, Form, Header } from "semantic-ui-react";
 import { useForm } from 'react-hook-form';
 
+import "./style.scss";
+
 function LoginView() {
   const { register, handleSubmit, errors, setValue, triggerValidation } = useForm();
 
@@ -10,17 +12,17 @@ function LoginView() {
     register({ name: "password" }, { required: true });
   }, [register]);
 
-  const getError = fieldName => {
+  function getError(fieldName) {
     return !!errors[fieldName];
   };
 
-  const onSubmit = data => {
-    console.log('Login Author', data);
-  }
-
-  const updateFormField = async (e, { name, value }) => {
+  async function updateFormField(e, { name, value }) {
     setValue(name, value);
     await triggerValidation({ name });
+  }
+
+  function onSubmit(data) {
+    console.log('Login Author', data);
   }
 
   return (

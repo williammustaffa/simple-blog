@@ -7,6 +7,12 @@ const retrieveDataDelayed = (value, time = 3000) => {
   });
 }
 
+function clone(targetObject) {
+  return JSON.parse(
+    JSON.stringify(targetObject)
+  );
+}
+
 class BlogAPI {
   createPost() {
 
@@ -26,12 +32,15 @@ class BlogAPI {
   fetchCategories() {
     const { categories } = FakeDB;
 
+    // Clone original data
+    const _categories = clone(categories);
+
     // Return a fake API response
     const response = {
-      items: categories,
+      items: _categories,
     };
 
-    return retrieveDataDelayed(response, 500);
+    return retrieveDataDelayed(response, 4000);
   }
 
   /**
@@ -39,16 +48,25 @@ class BlogAPI {
    * @param {string} id 
    */
   fetchPost(id) {
-    const { posts, profiles } = FakeDB;
+    const { posts, profiles, categories } = FakeDB;
+
+    // Clone original data
+    const _posts = clone(posts);
+    const _profiles = clone(profiles);
+    const _categories = clone(categories);
 
     // Find respective post
-    const response = posts
+    const response = _posts
       .find(post => String(post.id) === String(id));
 
     // Link author data
     if (response) {
-      response.author = profiles
+      response.author = _profiles
         .find(profile => String(profile.id) === String(response.author));
+
+      response.categories = response.categories
+        .map(catId => _categories.find(_cat => String(_cat.id) === String(catId)))
+        .filter(category => !!category);
     }
 
     return retrieveDataDelayed(response);
@@ -58,27 +76,33 @@ class BlogAPI {
    * Fetch list of posts
    */
   fetchPosts() {
-    let { posts, profiles } = FakeDB;
+    const { posts, profiles, categories } = FakeDB;
+
+    // Clone original data
+    const _posts = clone(posts);
+    const _profiles = clone(profiles);
+    const _categories = clone(categories);
 
     // Map posts and link author data
-    posts = posts.map(post => {
-      if (post) {
-        post.author = profiles
-          .find(profile => String(profile.id) === String(post.author));
-      }
+    for (const post of _posts) {
+      post.author = _profiles
+        .find(profile => String(profile.id) === String(post.author));
 
-      return post;
-    });
+      post.categories = post.categories
+        .map(catId => _categories.find(cat => String(cat.id) === String(catId)))
+        .filter(category => !!category);
+    }
 
     // Return a fake API response
     const response = {
-      items: posts,
+      items: _posts,
     };
 
     return retrieveDataDelayed(response);
   }
 }
 
+// Create a cached connector
 let connectorInstance = null;
 function getBlogAPIConnector() {
   if (!connectorInstance) {

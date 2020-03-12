@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { push } from "connected-react-router";
-import { Grid, Header, Divider, Image, Icon } from "semantic-ui-react";
+import { Grid, Header, Divider, Image, Icon, Label } from "semantic-ui-react";
 import Spinner from "../../components/Spinner";
 import { fetchPost } from "../../store/actions";
 
-import "./style.css";
+import "./style.scss";
 
 function PostDetailsView(props) {
   const { id } = props.match.params;
@@ -30,6 +30,10 @@ function PostDetailsView(props) {
     
   }
 
+  const renderCategoryLabel = (category) => (
+    <Label color={category.labelColor}>{category.displayName}</Label>
+  );
+
   if (isFetching) {
     return <Spinner />
   }
@@ -41,13 +45,18 @@ function PostDetailsView(props) {
         <Header as="h1">
           {post.title}
         </Header>
-        <div className="post-actions">
-          <span className="action-link clickable" onClick={navigateTo(`/dashboard/post/${post.id}`)}>
-            <Icon name="edit" />Edit
-          </span>
-          <span className="action-link clickable" onClick={deletePost}>
-            <Icon name="delete" />Delete
-          </span>
+        <div className="post-line">
+          <div className="post-categories">
+            {post.categories.map(renderCategoryLabel)}
+          </div>
+          <div className="post-actions">
+            <span className="action-link link clickable" onClick={navigateTo(`/dashboard/post/${post.id}`)}>
+              <Icon name="edit" />Edit
+            </span>
+            <span className="action-link link clickable" onClick={deletePost}>
+              <Icon name="delete" />Delete
+            </span>
+          </div>
         </div>
         <Divider horizontal className="clearfix">
           <Header as="h4">Posted 25/05/12020 by <span className="link static">@{author.username}</span></Header>

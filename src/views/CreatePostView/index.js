@@ -3,7 +3,7 @@ import { Grid, Form, Header } from "semantic-ui-react";
 import { useForm } from "react-hook-form";
 import TextEditor from "../../components/TextEditor";
 
-import "./style.css";
+import "./style.scss";
 
 function CreatePostView() {
   const { register, handleSubmit, errors, setValue, triggerValidation } = useForm();

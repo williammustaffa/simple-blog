@@ -2,15 +2,17 @@ import React, { useEffect } from "react";
 import { Grid, Form, Header } from "semantic-ui-react";
 import { useForm } from 'react-hook-form';
 
+import "./style.scss";
+
 function RegisterView() {
   const { register, handleSubmit, errors, setValue, triggerValidation, watch } = useForm();
 
   useEffect(() => {
-    const validatePassword = value => {
+    function validatePassword(value) {
       return value && /^\S+$/.test(value) && value.length > 5;
     }
   
-    const validateConfirmPassword = value => {
+    function validateConfirmPassword(value) {
       return value && value === watch('password');
     }
 
@@ -22,17 +24,17 @@ function RegisterView() {
     register({ name: "confirmPassword" }, { required: true, validate: validateConfirmPassword });
   }, [register, watch]);
 
-  const getError = fieldName => {
+  function getError(fieldName) {
     return !!errors[fieldName];
   };
 
-  const onSubmit = data => {
-    console.log('Create Author', data);
-  }
-
-  const updateFormField = async (e, { name, value }) => {
+  async function updateFormField(e, { name, value }) {
     setValue(name, value);
     await triggerValidation({ name });
+  }
+
+  function onSubmit(data) {
+    console.log('Create Author', data);
   }
 
   return (

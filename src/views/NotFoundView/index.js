@@ -3,6 +3,8 @@ import { push } from "connected-react-router";
 import { Grid, Header, Button, Segment } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
 
+import "./style.scss";
+
 function NotFoundView() {
   const dispatch = useDispatch();
   const navigateTo = path => () => dispatch(push(path));

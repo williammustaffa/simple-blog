@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Segment, Container, Image } from "semantic-ui-react";
 import logoInverted from "../../assets/images/logo-inverted.svg";
 
-import "./style.css";
+import "./style.scss";
 
 function Footer() {
   return (

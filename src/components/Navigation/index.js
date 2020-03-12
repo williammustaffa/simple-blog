@@ -12,7 +12,7 @@ function Navigation() {
     <Menu inverted style={{ borderRadius: 0 }}>
       <Container>
         <Menu.Item
-          name="home"
+          name="homes"
           onClick={navigateTo("/")}
         />
         <Menu.Item
