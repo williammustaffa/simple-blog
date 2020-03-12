@@ -4,12 +4,14 @@ import { push } from "connected-react-router";
 import { Button, Menu, Container, Input } from "semantic-ui-react";
 import CategoriesItem from "./CategoriesItem";
 
+import "./style.scss";
+
 function Navigation() {
   const dispatch = useDispatch();
   const navigateTo = path => () => dispatch(push(path));
 
   return (
-    <Menu inverted style={{ borderRadius: 0 }}>
+    <Menu inverted className="header-navigation">
       <Container>
         <Menu.Item
           name="homes"

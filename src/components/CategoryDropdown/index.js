@@ -4,6 +4,8 @@ import classNames from "classnames";
 import { useSelector } from "react-redux";
 import { Dropdown } from "semantic-ui-react";
 
+import "./style.scss";
+
 function CategoryDropdown({ name, label, defaultValue, onChange, error }) {
   const { isFetching, categories } = useSelector(state => ({
     isFetching: state.categories.isFetching,
@@ -32,7 +34,7 @@ function CategoryDropdown({ name, label, defaultValue, onChange, error }) {
   });
 
   return (
-    <div className={classNames("field", { error })}>
+    <div className={classNames("custom-dropdown", "field", { error })}>
       {label && <label>{label}</label>}
       <Dropdown
         multiple

@@ -13,7 +13,9 @@ function PostCard({ post }) {
     .replace(/\s/gi, "-");
 
   const renderCategoryLabel = (category) => (
-    <Label color={category.labelColor} size="tiny">{category.displayName}</Label>
+    <Label key={category.id} color={category.labelColor} size="tiny">
+      {category.displayName}
+    </Label>
   );
 
   return (

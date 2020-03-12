@@ -31,7 +31,9 @@ function PostDetailsView(props) {
   }
 
   const renderCategoryLabel = (category) => (
-    <Label color={category.labelColor}>{category.displayName}</Label>
+    <Label key={category.id} color={category.labelColor}>
+      {category.displayName}
+    </Label>
   );
 
   if (isFetching) {

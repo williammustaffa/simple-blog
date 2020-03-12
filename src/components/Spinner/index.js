@@ -5,7 +5,7 @@ import "./style.scss";
 
 function Spinner() {
   return (
-    <Loader active inline="centered" className="custom-spinner" />
+    <Loader active className="custom-spinner" />
   );
 }
 

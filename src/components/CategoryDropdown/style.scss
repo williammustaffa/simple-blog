@@ -1,3 +1,5 @@
 .custom-dropdown {
-  
+  &.field.error .ui.dropdown .text {
+    background: transparent !important;
+  }
 }

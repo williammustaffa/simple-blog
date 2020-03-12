@@ -17,14 +17,14 @@ import CreatePostView from "./views/CreatePostView";
 import NotFoundView from "./views/NotFoundView";
 
 // Global styles
-import "./assets/style/global.css";
+import "./assets/style/global.scss";
 import "semantic-ui-css/semantic.min.css";
 
 const App = () => {
   return (
     <Fragment>
       <Header />
-      <Container>
+      <Container className="app-container">
         <Switch>
           <Route exact path="/" component={HomeView} />
           <Route path="/login" component={LoginView} />

@@ -1,0 +1,31 @@
+#app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .page-title {
+    margin-bottom: 2em;
+  }
+
+  .clickable {
+    cursor: pointer;
+  }
+  
+  .link {
+    color: #db2828;
+
+    &:not(.static):hover {
+      color: #000;
+    }
+  }
+
+  .clearfix {
+    clear: both;
+  }
+
+  .app-container {
+    height: 100%;
+    flex-grow: 1;
+    position: relative;
+  }
+}
