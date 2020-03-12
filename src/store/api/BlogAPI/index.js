@@ -26,6 +26,22 @@ class BlogAPI {
     
   }
 
+  updatePost(payload) {
+    const { posts } = FakeDB;
+
+    const response = posts
+      .find(post => String(post.id) === String(payload.id));
+
+    if (response) {
+      response.title = payload.title;
+      response.imageUrl = payload.imageUrl;
+      response.content = payload.content;
+      response.categories = payload.categories;
+    }
+
+    return retrieveDataDelayed(response, 3000)
+  }
+
   /**
    * Fetch categories list
    */

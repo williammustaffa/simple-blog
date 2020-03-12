@@ -15,11 +15,17 @@ const reducer = (state = [], { type, payload }) => {
       return { ...state, isFetching: false, items: [], errorMessage: payload.message };
 
     case types.CREATE_POST:
-      // state.push(new Post(payload));
+      state.push(new Post(payload));
       return state;
 
-    case types.DELETE_POST:
-      // state = state.filter(post => post.id !== payload.id);
+    case types.CREATE_POST_SUCCESS:
+      return { ...state, isFetching: false, items };
+
+      return state;
+
+    case types.CREATE_POST_FAILURE:
+      return { ...state, isFetching: false, items: [], errorMessage: payload.message };
+
       return state;
 
     default:

@@ -6,11 +6,10 @@ import types from "../types";
 /**
  * Fetch a single post data by passing its id
  */
-export function* fetchPost(action) {
+export function* fetchPost({ payload }) {
   try {
-    const id = action.payload;
     const connector = getBlogAPIConnector();
-    const result = yield call(connector.fetchPost, id);
+    const result = yield call(connector.fetchPost, payload);
 
     yield put(fetchPostSuccess(result));
   } catch (e) {

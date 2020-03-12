@@ -1,16 +1,18 @@
 import { all } from "redux-saga/effects";
+import { watchFetchCategoriesAsync } from "./fetchCategories";
 import { watchFetchPostAsync } from "./fetchPost";
 import { watchFetchPostsAsync } from "./fetchPosts";
-import { watchFetchCategoriesAsync } from "./fetchCategories";
+import { watchUpdatePostAsync } from "./updatePost";
 
 /**
  * Root saga provided to redux middleware
  */
 function* root() {
   yield all([
+    watchFetchCategoriesAsync(),
     watchFetchPostsAsync(),
     watchFetchPostAsync(),
-    watchFetchCategoriesAsync(),
+    watchUpdatePostAsync(),
   ]);
 }
 

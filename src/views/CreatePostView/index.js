@@ -1,11 +1,14 @@
 import React from "react";
 import { Grid, Header } from "semantic-ui-react";
+import { useDispatch } from "react-redux";
 import PostForm from "../../components/PostForm";
 import "./style.scss";
 
 function CreatePostView() {
+  const dispatch = useDispatch();
+
   function onSubmit(data) {
-    console.log('Create post', data);
+    console.log('Dispatch post creation:', data);
   }
 
   return (

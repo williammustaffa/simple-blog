@@ -12,6 +12,7 @@ function PostForm(props = {}) {
 
   const { register, handleSubmit, errors, setValue, triggerValidation } = useForm({
     defaultValues: {
+      id: post.id || "new",
       title: post.title || "",
       imageUrl: post.imageUrl || "",
       content: post.content || "",
@@ -33,6 +34,7 @@ function PostForm(props = {}) {
       return textContent.length > 0;
     };
 
+    register({ name: "id" }, { required: false });
     register({ name: "title" }, { required: true });
     register({ name: "imageUrl" }, { required: false });
     register({ name: "content" }, { required: true, validate: validatePostContent });

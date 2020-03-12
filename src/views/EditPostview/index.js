@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Grid, Header } from "semantic-ui-react";
-import { fetchPost } from "../../store/actions";
+import { fetchPost, updatePost } from "../../store/actions";
 
 import "./style.scss";
 import Spinner from "../../components/Spinner";
@@ -24,7 +24,7 @@ function EditPostView(props) {
   }, [id]);
 
   function onSubmit(data) {
-    console.log('Dispatch post update:', data);
+    dispatch(updatePost(data));
   }
 
   if (isFetching) {
