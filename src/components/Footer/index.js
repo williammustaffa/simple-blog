@@ -1,10 +1,12 @@
 import React from "react";
 import { Grid, Segment, Container, Image } from "semantic-ui-react";
-import logoInverted from "../assets/images/logo-inverted.svg";
+import logoInverted from "../../assets/images/logo-inverted.svg";
 
-const Footer = () => {
+import "./style.css";
+
+function Footer() {
   return (
-    <Segment inverted vertical style={{ margin: '5em 0 0', padding: '5em 0 1em' }}>
+    <Segment inverted vertical className="custom-footer">
       <Container>
         <Grid centered>
           <Grid.Row>

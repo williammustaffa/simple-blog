@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { push } from "connected-react-router";
-import { Grid, Loader, Header, Divider, Image } from "semantic-ui-react";
+import { Grid, Header, Divider, Image, Icon } from "semantic-ui-react";
+import Spinner from "../../components/Spinner";
 import { fetchPost } from "../../store/actions";
+
+import "./style.css";
 
 function PostDetailsView(props) {
   const { id } = props.match.params;
@@ -23,23 +26,35 @@ function PostDetailsView(props) {
 
   const { author } = post;
 
+  function deletePost() {
+    
+  }
+
   if (isFetching) {
-    return (
-      <Loader active inline='centered' style={{ margin: '10em auto' }} />
-    );
+    return <Spinner />
   }
 
   return (
     <Grid>
       <Grid.Column>
-          <Image src='https://picsum.photos/1200/200?t=${Date.now()}' fluid />
-          <Header as="h1">{post.title}</Header>
-          <Divider horizontal textAlign="left">
-            <Header as="h4">
-              Posted 25/05/12020 by <a href="#" onClick={navigateTo(`/author/${author.username}`)}>@{author.username}</a>
-            </Header>
-          </Divider>
+        {post.imageUrl && <Image src={post.imageUrl} centered />}
+        <Header as="h1">
+          {post.title}
+        </Header>
+        <div className="post-actions">
+          <span className="action-link clickable" onClick={navigateTo(`/dashboard/post/${post.id}`)}>
+            <Icon name="edit" />Edit
+          </span>
+          <span className="action-link clickable" onClick={deletePost}>
+            <Icon name="delete" />Delete
+          </span>
+        </div>
+        <Divider horizontal className="clearfix">
+          <Header as="h4">Posted 25/05/12020 by <span className="link static">@{author.username}</span></Header>
+        </Divider>
+        <div className="content clearfix">
           <p dangerouslySetInnerHTML={{ __html: post.content }}></p>
+        </div>
       </Grid.Column>
     </Grid>
   );

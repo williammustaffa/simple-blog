@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid, Image } from "semantic-ui-react";
-import Navigation from "./Navigation";
-import logo from "../assets/images/logo.svg";
+import Navigation from "../Navigation";
+import logo from "../../assets/images/logo.svg";
 
-const Header = () => {
+function Header() {
   return (
     <Grid centered style={{ marginBottom: '4em' }}>
       <Grid.Row>

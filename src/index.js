@@ -10,6 +10,7 @@ import Post from "./store/models/Post";
 const store = generateStore({
   posts: { isFetching: false, items: [], errorMessage: "" },
   post: { isFetching: false, item: new Post(), errorMessage: "" },
+  categories: { isFetching: false, items: [], errorMessage: "" },
 });
 
 ReactDOM.render(

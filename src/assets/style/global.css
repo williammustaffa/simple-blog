@@ -1,0 +1,15 @@
+.clickable {
+  cursor: pointer;
+}
+
+.link {
+  color: #db2828;
+}
+
+.link:not(.static):hover {
+  color: #000;
+}
+
+.clearfix {
+  clear: both;
+}

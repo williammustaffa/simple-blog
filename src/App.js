@@ -16,8 +16,9 @@ import EditPostView from "./views/EditPostview";
 import CreatePostView from "./views/CreatePostView";
 import NotFoundView from "./views/NotFoundView";
 
-// Theme
-import "semantic-ui-css/semantic.min.css"
+// Global styles
+import "./assets/style/global.css";
+import "semantic-ui-css/semantic.min.css";
 
 const App = () => {
   return (
@@ -26,12 +27,12 @@ const App = () => {
       <Container>
         <Switch>
           <Route exact path="/" component={HomeView} />
-          <Route exact path="/login" component={LoginView} />
-          <Route exact path="/register" component={RegisterView} />
-          <Route exact path="/post/:id/:name" component={PostDetailsView} />
+          <Route path="/login" component={LoginView} />
+          <Route path="/register" component={RegisterView} />
+          <Route path="/post/:id/:name" component={PostDetailsView} />
           <Route exact path="/dashboard" component={DashboardView} />
-          <Route exact path="/post/edit" component={EditPostView} />
-          <Route exact path="/post/create" component={CreatePostView} />
+          <Route exact path="/dashboard/post" component={CreatePostView} />
+          <Route path="/dashboard/post/:id" component={EditPostView} />
           <Route component={NotFoundView} />
         </Switch>
       </Container>

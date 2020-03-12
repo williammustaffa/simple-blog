@@ -1,9 +1,9 @@
 
-import LocalDB from "../LocalDB";
+import FakeDB from "../FakeDB";
 
-const retrieveDataDelayed = (value) => {
+const retrieveDataDelayed = (value, time = 3000) => {
   return new Promise(resolve => {
-    setTimeout(() => resolve(value), 3000);
+    setTimeout(() => resolve(value), time);
   });
 }
 
@@ -16,16 +16,36 @@ class BlogAPI {
 
   }
 
-  createProfile() {
-
+  createProfile(profile) {
+    
   }
 
-  fetchPost(id) {
-    const { posts, profiles } = LocalDB;
+  /**
+   * Fetch categories list
+   */
+  fetchCategories() {
+    const { categories } = FakeDB;
 
+    // Return a fake API response
+    const response = {
+      items: categories,
+    };
+
+    return retrieveDataDelayed(response, 500);
+  }
+
+  /**
+   * Fetch post by id
+   * @param {string} id 
+   */
+  fetchPost(id) {
+    const { posts, profiles } = FakeDB;
+
+    // Find respective post
     const response = posts
       .find(post => String(post.id) === String(id));
 
+    // Link author data
     if (response) {
       response.author = profiles
         .find(profile => String(profile.id) === String(response.author));
@@ -34,8 +54,23 @@ class BlogAPI {
     return retrieveDataDelayed(response);
   }
 
+  /**
+   * Fetch list of posts
+   */
   fetchPosts() {
-    const { posts } = LocalDB;
+    let { posts, profiles } = FakeDB;
+
+    // Map posts and link author data
+    posts = posts.map(post => {
+      if (post) {
+        post.author = profiles
+          .find(profile => String(profile.id) === String(post.author));
+      }
+
+      return post;
+    });
+
+    // Return a fake API response
     const response = {
       items: posts,
     };

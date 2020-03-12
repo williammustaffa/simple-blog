@@ -1,0 +1,13 @@
+.ui.form .custom-editor-style select {
+  background: none transparent;
+  border: 4px solid transparent;
+  padding: 0 20px 0 0;
+}
+
+.editor-inline-button {
+  background: #fff !important;
+}
+
+.custom-editor-box-style .public-DraftEditor-content {
+  min-height: 200px;
+}

@@ -1,9 +1,11 @@
-const LocalDB = {
+const FakeDB = {
   posts: [],
   profiles: [],
+  categories: [],
 };
 
-LocalDB.posts.push({
+// Posts
+FakeDB.posts.push({
   id: "p1",
   imageUrl: "https://loremflickr.com/320/240?lock=1",
   creationDate: 1544666400000,
@@ -15,7 +17,7 @@ LocalDB.posts.push({
   ratings: [],
 });
 
-LocalDB.posts.push({
+FakeDB.posts.push({
   id: "p2",
   imageUrl: "https://loremflickr.com/300/200?lock=2",
   creationDate: 1583896648320,
@@ -27,7 +29,7 @@ LocalDB.posts.push({
   ratings: [],
 });
 
-LocalDB.posts.push({
+FakeDB.posts.push({
   id: "p3",
   imageUrl: "https://loremflickr.com/300/200?lock=3",
   creationDate: 1583896648321,
@@ -39,7 +41,7 @@ LocalDB.posts.push({
   ratings: [],
 });
 
-LocalDB.posts.push({
+FakeDB.posts.push({
   id: "p4",
   imageUrl: "https://loremflickr.com/300/200?lock=4",
   creationDate: 1583896648322,
@@ -51,7 +53,8 @@ LocalDB.posts.push({
   ratings: [],
 });
 
-LocalDB.profiles.push({
+// Profiles
+FakeDB.profiles.push({
   id: "a1",
   email: "john.doe@mail.com",
   username: "john.doe",
@@ -62,4 +65,25 @@ LocalDB.profiles.push({
   password: "12345",
 });
 
-export default LocalDB;
+// Categories
+FakeDB.categories.push({
+  id: "c1",
+  displayName: "Funny",
+});
+
+FakeDB.categories.push({
+  id: "c2",
+  displayName: "Policitcs",
+});
+
+FakeDB.categories.push({
+  id: "c3",
+  displayName: "Geek",
+});
+
+FakeDB.categories.push({
+  id: "c4",
+  displayName: "Sports",
+});
+
+export default FakeDB;
