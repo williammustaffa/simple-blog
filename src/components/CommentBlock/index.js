@@ -1,31 +1,60 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Segment, Header, Form, Button } from "semantic-ui-react";
+import { push } from "connected-react-router";
+import { useForm } from "react-hook-form";
+import { addPostComment } from "store/actions";
 
 import "./style.scss";
-import { push } from "connected-react-router";
 
 function CommentBlock({ post }) {
   const dispatch = useDispatch();
-  const { user } = useSelector(state => ({
+  const { user, isFetchingComments } = useSelector(state => ({
     user: state.user,
+    isFetchingComments: state.post.isFetchingComments,
   }));
 
   const navigateTo = path => () => dispatch(push(path));
 
+// Form validation
+const { register, handleSubmit, errors, setValue, triggerValidation } = useForm({
+  defaultValues: {
+    comment: "",
+  }
+});
+
+  // Component did mount
+  useEffect(() => {
+    register({ name: "comment" }, { required: true });
+  }, [register]);
+
+  function getError(fieldName) {
+    return !!errors[fieldName];
+  };
+
+  async function updateFormField(e, { name, value }) {
+    setValue(name, value);
+    await triggerValidation({ name });
+  }
+
+  function submitComment(data, e) {
+    dispatch(addPostComment({
+      postId: post.id, 
+      author: user.profile.id,
+      content: data.comment,
+    }));
+
+    e.target.reset();
+  }
+
   const renderComment = comment => (
-    <Segment>
+    <Segment key={comment.id}>
       <Header as="h4">
-        <strong className="link static">@{comment.author}</strong> <i>commented at</i>
-        <Header.Subheader>{comment.creationDate}</Header.Subheader>
+        <strong className="link static">@{comment.author.username}</strong> commented at <i className="comment-creation-date">{comment.creationDate}</i>
       </Header>
       <div>{comment.content}</div>
     </Segment>
   );
-
-  function submitComment() {
-
-  }
 
   return (
     <Segment className="comment-block">
@@ -33,9 +62,9 @@ function CommentBlock({ post }) {
         user.isLoggedIn ?
         <Fragment>
           <Header>Comment as <span className="link static">@{user.profile.username}</span>:</Header>
-          <Form className="comment-form">
-            <Form.TextArea />
-            <Button color="red" floated="right" onClick={submitComment}>Comment</Button>
+          <Form onSubmit={handleSubmit(submitComment)} className="comment-form" loading={isFetchingComments}>
+            <Form.TextArea name="comment" onChange={updateFormField} error={getError("comment")} />
+            <Button color="red" floated="right">Comment</Button>
           </Form>
         </Fragment> :
         <Header textAlign="center" className="guest-comment-block">

@@ -1,11 +1,15 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import { Form } from "semantic-ui-react";
+import { useDispatch } from "react-redux";
+import { Form, Icon } from "semantic-ui-react";
 import { useForm } from "react-hook-form";
 import TextEditor from "components/TextEditor";
 import CategoryDropdown from "components/CategoryDropdown";
 import extractContentFromHtmlString from "utils/extractContentFromHtmlString";
 import Post from "store/models/Post";
+import { push } from "connected-react-router";
+
+import "./style.scss";
 
 function PostForm(props = {}) {
   const { post = new Post(), onSubmit } = props;
@@ -19,6 +23,9 @@ function PostForm(props = {}) {
       categories: (post.categories || []).map(category => category.id),
     }
   });
+
+  const dispatch = useDispatch();
+  const navigateTo = path => () => dispatch(push(path));
 
   // Component did mount
   useEffect(() => {
@@ -91,7 +98,16 @@ function PostForm(props = {}) {
         error={getError("categories")}
         label="Categories"
       />
-      <Form.Button fluid color="red" style={{ marginTop: "2em" }}>Publish</Form.Button>
+      <div className="form-footer">
+        {
+          post.url ?
+          <span className="clickable link btn-sized" onClick={navigateTo(post.url)}>
+            <Icon name="angle left" />Go to post page
+          </span> :
+          null
+        }
+        <Form.Button color="red">Publish</Form.Button>
+      </div>
     </Form>
   )
 }

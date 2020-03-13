@@ -1,14 +1,16 @@
 
 import database from "store/api/database";
+import moment from "moment";
 import { clone } from "utils/index.js";
+import { v1 as uuidv1 } from 'uuid';
 
-const retrieveDataDelayed = (value, time = 3000) => {
+const retrieveDataDelayed = (value, time = 500) => {
   return new Promise(resolve => {
     setTimeout(() => resolve(value), time);
   });
 }
 
-const retrieveErrorDelayed = (value, time = 3000) => {
+const retrieveErrorDelayed = (value, time = 500) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => reject({ message: value }), time);
   });
@@ -27,7 +29,7 @@ class BlogAPI {
    * Fetch relational data from post object
    * @param {object} post 
    */
-  populatePostData(post) {
+  populatePostData = (post) => {
     // Fetch categories data
     post.categories = post.categories.map(categoryId => {
       return database.queryAll("categories", {
@@ -40,10 +42,37 @@ class BlogAPI {
       query: { id: post.author }
     })[0];
 
+    // Fetch comments author
+    post.comments = post.comments
+      .map(comment => {
+        comment.author = database.queryAll("profiles", {
+          query: { id: comment.author }
+        })[0];
+
+        return comment;
+      })
+      .sort((commentA, commentB) => {
+        const creationDateA = commentA.creationDate;
+        const creationDateB = commentB.creationDate;
+
+        if (moment(creationDateA).isBefore(creationDateB)) {
+          return 1;
+        }
+
+        if (moment(creationDateA).isAfter(creationDateB)) {
+          return -1;
+        }
+
+        return 0;
+      });
+
     return post;
   }
 
-  userCheckSession() {
+  /**
+   * Check user session an then populate data if needed
+   */
+  userCheckSession = () => {
     const authToken = localStorage.getItem("authToken");
 
     const data = getTokenizedInfo(authToken);
@@ -85,11 +114,56 @@ class BlogAPI {
     return retrieveDataDelayed(user, 3000);
   }
 
-  userLogout() {
+  /**
+   * Clear user session when he loogs out
+   */
+  userLogout = () => {
     // Clear token
     localStorage.removeItem("authToken");
 
     return retrieveDataDelayed(null, 0);
+  }
+
+  /**
+   * Add comment to the post
+   * TODO: We should handle posts in a separate table
+   * using the relational approach
+   */
+  addPostComment = (payload) => {
+    const { postId, author, content } = payload;
+
+    database.update("posts", { id: postId }, post => {
+      post.comments.push({
+        id: uuidv1(),
+        creationDate: Date.now(),
+        author,
+        content,
+      });
+
+      return post;
+    });
+
+    database.commit();
+
+    return this.fetchPost(postId);
+  }
+
+  togglePostLike = (payload) => {
+    const { profileId, postId } = payload;
+
+    database.update("posts", { id: postId }, post => {
+      if (post.likes.includes(profileId)) {
+        post.likes = post.likes.filter(id => id !== profileId);
+      } else {
+        post.likes.push(profileId);
+      }
+
+      return post;
+    });
+
+    database.commit();
+
+    return this.fetchPost(postId, true);
   }
 
   /**
@@ -114,20 +188,50 @@ class BlogAPI {
   }
 
   /**
+   * Create a post
+   */
+  createPost = (payload) => {
+    const postId = uuidv1();
+
+    database.insert("posts", {
+      ...payload,
+      id: postId,
+      creationDate: Date.now(),
+      comments: [],
+      likes: [],
+    });
+
+    database.commit();
+
+    return this.fetchPost(postId);
+  }
+
+
+  /**
+   * Delete a post
+   */
+  deletePost = (id) => {
+    database.deleteRows("posts", { id });
+    database.commit();
+
+    return retrieveDataDelayed({ success: true });
+  }
+
+  /**
    * Fetch categories list
    */
   fetchCategories = () => {
     const results = database.queryAll("categories");
     const categories = clone(results);
 
-    return retrieveDataDelayed(categories, 2000);
+    return retrieveDataDelayed(categories);
   }
 
   /**
    * Fetch post by id
    * @param {string} id 
    */
-  fetchPost = (id) => {
+  fetchPost = (id, instant) => {
     const results = database.queryAll("posts", { query: { id } });
 
     if (!results.length) {
@@ -135,6 +239,8 @@ class BlogAPI {
     }
 
     const post = this.populatePostData(clone(results[0]));
+    if (instant) return post;
+
     return retrieveDataDelayed(post);
   }
 

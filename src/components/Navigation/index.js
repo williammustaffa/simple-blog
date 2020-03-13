@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { push } from "connected-react-router";
-import { Button, Menu, Container, Input, Dropdown } from "semantic-ui-react";
+import { Button, Menu, Container, Input, Dropdown, Icon } from "semantic-ui-react";
 import CategoryMenuItem from "components/CategoryMenuItem";
 import { userLogout } from "store/actions";
 
@@ -37,8 +37,9 @@ function Navigation() {
             user.isLoggedIn ?
             <Dropdown item text={`${user.profile.firstName} ${user.profile.lastName}`}>
               <Dropdown.Menu>
-                <Dropdown.Item onClick={navigateTo("/dashboard")}>Dashboard</Dropdown.Item>
-                <Dropdown.Item onClick={onLogoutClick}>Log out</Dropdown.Item>
+                <Dropdown.Item onClick={navigateTo("/dashboard")}><Icon name="dashboard" /> Dashboard</Dropdown.Item>
+                <Dropdown.Item onClick={navigateTo("/dashboard/post")}><Icon name="plus" />Create Post</Dropdown.Item>
+                <Dropdown.Item onClick={onLogoutClick}><Icon name="log out" /> Log out</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown> :
             <Menu.Item>

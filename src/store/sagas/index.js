@@ -6,6 +6,10 @@ import { watchUpdatePostAsync } from "./updatePost";
 import { watchUserLoginAsync } from "./userLogin";
 import { watchUserLogoutAsync } from "./userLogout";
 import { watchUserCheckSessionAsync } from "./userCheckSession";
+import { watchAddPostCommentAsync } from "./addPostComment";
+import { watchTogglePostLikeAsync } from "./togglePostLike";
+import { watchCreatePostAsync } from "./createPost";
+import { watchDeletePostAsync } from "./deletePost";
 
 /**
  * Root saga provided to redux middleware
@@ -19,6 +23,10 @@ function* root() {
     watchUserLoginAsync(),
     watchUserLogoutAsync(),
     watchUserCheckSessionAsync(),
+    watchAddPostCommentAsync(),
+    watchTogglePostLikeAsync(),
+    watchCreatePostAsync(),
+    watchDeletePostAsync(),
   ]);
 }
 

@@ -9,9 +9,6 @@ function PostCard({ post }) {
   const dispatch = useDispatch();
   const navigateTo = path => () => dispatch(push(path));
 
-  const postUrl = `/post/${post.id}/${post.title}`
-    .replace(/\s/gi, "-");
-
   const renderCategoryLabel = (category) => (
     <Label key={category.id} color={category.labelColor} size="tiny">
       {category.displayName}
@@ -22,7 +19,7 @@ function PostCard({ post }) {
     <Card fluid>
       <div className="card-image" style={{ backgroundImage: `url(${post.imageUrl})` }}></div>
       <Card.Content>
-        <Card.Header onClick={navigateTo(postUrl)}>
+        <Card.Header onClick={navigateTo(post.url)}>
           <span className="clickable" >{post.title}</span>
         </Card.Header>
         <Card.Meta>Posted by <span className="link static">@{post.author.username}</span></Card.Meta>
@@ -39,7 +36,7 @@ function PostCard({ post }) {
         {post.categories.map(renderCategoryLabel)}
       </Card.Content>
       <Card.Content extra textAlign="right">
-        <span>{post.likes.length} <Icon color="red" name="heart" /></span>
+        <span>{post.likes.length} <Icon name="heart" /></span>
         <span>{post.comments.length} <Icon name="comment" /></span>
       </Card.Content>
     </Card>

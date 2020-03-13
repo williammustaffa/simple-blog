@@ -38,5 +38,15 @@
     "birthDate": 769748400000,
     "description": "Not a random guy :)",
     "password": "12345"
+  },
+  {
+    "id": "a5",
+    "email": "mate.demon@mail.com",
+    "username": "mate.demon",
+    "firstName": "Mate",
+    "lastName": "Demon",
+    "birthDate": 769748400000,
+    "description": "I'm not Matt Damon... or am I?",
+    "password": "12345"
   }
 ]

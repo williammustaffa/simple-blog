@@ -1,6 +1,7 @@
 import Profile from "./Profile";
 import Comment from "./Comment";
 import Category from "./Category";
+import buildPostUrl from "utils/buildPostUrl";
 
 class Post {
   constructor(payload = {}) {
@@ -15,6 +16,7 @@ class Post {
     this.comments = (payload.comments || [])
       .map(comment => new Comment(comment));
     this.likes = payload.likes || [];
+    this.url = buildPostUrl(payload);
   }
 }
 

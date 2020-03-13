@@ -1,14 +1,29 @@
 import React from "react";
 import { Grid, Header } from "semantic-ui-react";
-// import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import PostForm from "components/PostForm";
+import { createPost } from "store/actions";
+import Spinner from "components/Spinner";
+
 import "./style.scss";
 
 function CreatePostView() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const { user, isFetching } = useSelector(state => ({
+    isFetching: state.posts.isFetching,
+    user: state.user,
+  }));
 
   function onSubmit(data) {
-    console.log('Dispatch post creation:', data);
+    dispatch(createPost({
+      ...data,
+      author: user.profile.id
+    }));
+  }
+
+  if (isFetching) {
+    return <Spinner />;
   }
 
   return (

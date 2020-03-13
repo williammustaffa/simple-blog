@@ -3,6 +3,7 @@ import { Grid, Form, Header } from "semantic-ui-react";
 import { useForm } from "react-hook-form";
 
 import "./style.scss";
+import createProfile from "store/actions/profiles/createProfile";
 
 function RegisterView() {
   const { register, handleSubmit, errors, setValue, triggerValidation, watch } = useForm();
@@ -34,7 +35,7 @@ function RegisterView() {
   }
 
   function onSubmit(data) {
-    console.log('Create Author', data);
+    dispatchEvent(createProfile(data));
   }
 
   return (

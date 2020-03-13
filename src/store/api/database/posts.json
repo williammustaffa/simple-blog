@@ -19,7 +19,7 @@
         "content": "Donec ac elit purus. Fusce maximus ipsum vel sapien convallis luct..."
       }
     ],
-    "likes": []
+    "likes": ["a1", "a2", "a4"]
   },
   {
     "id": "p2",
@@ -52,7 +52,7 @@
         "content": "Nunc tristique neque erat, et bibendum dui suscipit id. Nulla pulvinar facilisis ipsum in faucibus. </p><br/><p>Duis in odio laoreet, tristique libero sed, lacinia enim. Suspendisse potenti. Sed tristique massa eu bibendum ultrices. Nulla pulvinar sodales mauris vel varius. Aliquam erat volutpat. Integer tempor, erat ut viverra tincidunt, mauris lorem fringilla ipsum, ac congue velit quam in turpis. Phasellus aliquam eros quis ipsum rhoncus porttitor. Donec quis ligula est. Pellentesque quis euismod lorem, a euismod ipsum.</p><br/><p>Cras arcu diam, sollicitudin rutrum accumsan sit amet, malesuada sed libero. Fusce et felis ut orci eleifend scelerisque et sit amet sem. Quisque finibus efficitur feugiat. Proin vel lorem nibh. Duis tempor erat ex, in varius arcu suscipit vitae. Integer auctor velit diam, ut mattis sapien blandit vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam interdum tincidunt libero ac sollicitudin. Pellentesque vitae ligula sit amet lacus pellentesque vehicula. Phasellus laoreet nisi pulvinar, vulputate lectus vitae, vulputate purus. Vestibulum malesuada elementum diam eget faucibus. Nam imperdiet mollis nibh."
       }
     ],
-    "likes": []
+    "likes": ["a1", "a3", "a4"]
   },
   {
     "id": "p3",
@@ -102,7 +102,7 @@
         "content": "Suspendisse potenti. Sed tristique massa eu bibendum ultrices. Nulla pulvinar sodales mauris vel varius. Aliquam erat volutpat. Integer tempor."
       }
     ],
-    "likes": []
+    "likes": ["a1", "a2"]
   },
   {
     "id": "p4",
@@ -129,6 +129,6 @@
         "content": "Vestibulum malesuada elementum diam eget faucibus. Nam imperdiet mollis nibh."
       }
     ],
-    "likes": []
+    "likes": ["a1", "a2", "a4", "a5"]
   }
 ]

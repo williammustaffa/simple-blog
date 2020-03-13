@@ -31,21 +31,21 @@ const reducer = (state = [], { type, payload }) => {
       };
 
     case types.CREATE_POST:
-      state.push(new Post(payload));
-      return state;
+      return {
+        ...state,
+        isFetching: true,
+      };
 
     case types.CREATE_POST_SUCCESS:
       return {
         ...state,
         isFetching: false,
-        items
       };
 
     case types.CREATE_POST_FAILURE:
       return {
         ...state,
         isFetching: false,
-        items: [],
         errorMessage: payload.message
       };
 
