@@ -1,7 +1,7 @@
+import types from "store/types";
 import { put, call, takeLatest } from "redux-saga/effects";
-import { getBlogAPIConnector } from "../api/BlogAPI";
-import { fetchCategoriesSuccess, fetchCategoriesFailure } from "../actions";
-import types from "../types";
+import { getBlogAPIConnector } from "store/api/BlogAPI";
+import { fetchCategoriesSuccess, fetchCategoriesFailure } from "store/actions";
 
 /**
  * Fetch categories data

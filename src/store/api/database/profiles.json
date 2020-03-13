@@ -1,0 +1,42 @@
+[
+  {
+    "id": "a1",
+    "email": "william.lima@mail.com",
+    "username": "william.lima",
+    "firstName": "William",
+    "lastName": "Lima",
+    "birthDate": 769748400000,
+    "description": "Just some random guy.",
+    "password": "12345"
+  },
+  {
+    "id": "a2",
+    "email": "john.doe@mail.com",
+    "username": "@john.doe",
+    "firstName": "John",
+    "lastName": "Doe",
+    "birthDate": 769748400000,
+    "description": "Another random guy.",
+    "password": "12345"
+  },
+  {
+    "id": "a3",
+    "email": "james.manco@mail.com",
+    "username": "@james.manco",
+    "firstName": "James",
+    "lastName": "Manco",
+    "birthDate": 769748400000,
+    "description": "This place has a lot of random guys... including me.",
+    "password": "12345"
+  },
+  {
+    "id": "a4",
+    "email": "james.manco@mail.com",
+    "username": "@joseph.moe",
+    "firstName": "Joseph",
+    "lastName": "Moe",
+    "birthDate": 769748400000,
+    "description": "Not a random guy :)",
+    "password": "12345"
+  }
+]

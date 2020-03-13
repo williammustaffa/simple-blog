@@ -16,7 +16,7 @@ function PostForm(props = {}) {
       title: post.title || "",
       imageUrl: post.imageUrl || "",
       content: post.content || "",
-      categories: post.categories || [],
+      categories: (post.categories || []).map(category => category.id),
     }
   });
 

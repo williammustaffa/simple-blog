@@ -1,0 +1,42 @@
+[
+  {
+    "id": "c1",
+    "displayName": "Funny",
+    "labelColor": "red"
+  },
+  {
+    "id": "c2",
+    "displayName": "Politics",
+    "labelColor": "yellow"
+  },
+  {
+    "id": "c3",
+    "displayName": "Geek",
+    "labelColor": "black"
+  },
+  {
+    "id": "c4",
+    "displayName": "Sports",
+    "labelColor": "teal"
+  },
+  {
+    "id": "c5",
+    "displayName": "Cute",
+    "labelColor": "pink"
+  },
+  {
+    "id": "c6",
+    "displayName": "Technology",
+    "labelColor": "violet"
+  },
+  {
+    "id": "c7",
+    "displayName": "E-sports",
+    "labelColor": "olive"
+  },
+  {
+    "id": "c8",
+    "displayName": "World",
+    "labelColor": "green"
+  }
+]

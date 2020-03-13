@@ -18,7 +18,7 @@ function NotFoundView() {
               It seems you got lost.
               <Header.Subheader>This page doesn't exist...</Header.Subheader>
             </Header>
-            <Button secondary onClick={navigateTo('/')}>Go to homepage</Button>
+            <Button secondary onClick={navigateTo("/")}>Go to homepage</Button>
           </Segment>
         </Grid.Column>
       </Grid.Row>

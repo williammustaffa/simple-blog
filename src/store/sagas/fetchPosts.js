@@ -1,7 +1,7 @@
+import types from "store/types";
 import { put, call, takeLatest } from "redux-saga/effects";
-import { getBlogAPIConnector } from "../api/BlogAPI";
-import types from "../types";
-import { fetchPostsSuccess, fetchPostsFailure} from "../actions";
+import { getBlogAPIConnector } from "store/api/BlogAPI";
+import { fetchPostsSuccess, fetchPostsFailure} from "store/actions";
 
 /**
  * Fetch all posts

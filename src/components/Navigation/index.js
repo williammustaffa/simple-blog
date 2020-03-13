@@ -1,14 +1,23 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { push } from "connected-react-router";
-import { Button, Menu, Container, Input } from "semantic-ui-react";
-import CategoriesItem from "./CategoriesItem";
+import { Button, Menu, Container, Input, Dropdown } from "semantic-ui-react";
+import CategoryMenuItem from "components/CategoryMenuItem";
+import { userLogout } from "store/actions";
 
 import "./style.scss";
 
 function Navigation() {
   const dispatch = useDispatch();
   const navigateTo = path => () => dispatch(push(path));
+
+  const { user } = useSelector(state => ({
+    user: state.user,
+  }));
+
+  function onLogoutClick() {
+    dispatch(userLogout());
+  }
 
   return (
     <Menu inverted className="header-navigation">
@@ -18,19 +27,28 @@ function Navigation() {
           onClick={navigateTo("/")}
         />
         <Menu.Item
-          name='dashboard'
+          name="dashboard"
           onClick={navigateTo("/dashboard")}
         />
-        <CategoriesItem />
+        <CategoryMenuItem />
 
-        <Menu.Menu position='right'>
+
+        <Menu.Menu position="right">
           <Menu.Item>
-            <Input icon='search' placeholder='Search...' />
+            <Input icon="search" placeholder="Search..." />
           </Menu.Item>
-          <Menu.Item>
-            <Button secondary onClick={navigateTo("/register")} style={{ marginRight: 5 }}>Register</Button>
-            <Button color="red" onClick={navigateTo("/login")}>Log in</Button>
-          </Menu.Item>
+          {
+            user.isLoggedIn ?
+            <Dropdown item text={`${user.profile.firstName} ${user.profile.lastName}`}>
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={onLogoutClick}>Log out</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown> :
+            <Menu.Item>
+              <Button secondary onClick={navigateTo("/register")} style={{ marginRight: 5 }}>Register</Button>
+              <Button color="red" onClick={navigateTo("/login")}>Log in</Button>
+            </Menu.Item>
+          }
         </Menu.Menu>
       </Container>
     </Menu>

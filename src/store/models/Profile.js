@@ -1,4 +1,4 @@
- class Author {
+ class Profile {
   constructor(payload = {}) {
     this.id = payload.id || "";
     this.username = payload.username || "";
@@ -11,4 +11,4 @@
   }
 }
 
-export default Author;
+export default Profile;

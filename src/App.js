@@ -1,6 +1,8 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Container } from "semantic-ui-react";
-import { Route, Switch } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { Route, Switch, Redirect } from "react-router";
+import { fetchCategories, userCheckSession } from "store/actions";
 
 // Common components
 import Header from "./components/Header";
@@ -20,7 +22,27 @@ import NotFoundView from "./views/NotFoundView";
 import "./assets/style/global.scss";
 import "semantic-ui-css/semantic.min.css";
 
-const App = () => {
+const PrivateRoute = ({ component, ...options }) => {
+  const { user } = useSelector(state => ({
+    user: state.user,
+  }));
+
+  return (
+    user.isLoggedIn ?
+    <Route component={component} {...options} />:
+    <Redirect to={`/login?redirect=${options.location.pathname}`} />
+  );
+};
+
+function App() {
+  // App initialization
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(userCheckSession());
+    dispatch(fetchCategories());
+  }, [dispatch]);
+
   return (
     <Fragment>
       <Header />
@@ -30,9 +52,9 @@ const App = () => {
           <Route path="/login" component={LoginView} />
           <Route path="/register" component={RegisterView} />
           <Route path="/post/:id/:name" component={PostDetailsView} />
-          <Route exact path="/dashboard" component={DashboardView} />
-          <Route exact path="/dashboard/post" component={CreatePostView} />
-          <Route path="/dashboard/post/:id" component={EditPostView} />
+          <PrivateRoute exact path="/dashboard" component={DashboardView} />
+          <PrivateRoute exact path="/dashboard/post" component={CreatePostView} />
+          <PrivateRoute path="/dashboard/post/:id" component={EditPostView} />
           <Route component={NotFoundView} />
         </Switch>
       </Container>

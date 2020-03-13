@@ -1,37 +1,21 @@
-import fetchPosts from "./posts/fetchPosts";
-import fetchPostsSuccess from "./posts/fetchPostsSuccess";
-import fetchPostsFailure from "./posts/fetchPostsFailure";
-import fetchPost from "./post/fetchPost";
-import fetchPostSuccess from "./post/fetchPostSuccess";
-import fetchPostFailure from "./post/fetchPostFailure";
-import createPost from "./posts/createPost";
-import deletePost from "./posts/deletePost";
-import updatePost from "./post/updatePost";
-import updatePostSuccess from "./post/updatePostSuccess";
-import updatePostFailure from "./post/updatePostFailure";
-import fetchProfile from "./profile/fetchProfile";
-import fetchProfileSuccess from "./profile/fetchProfileSuccess";
-import fetchProfileFailure from "./profile/fetchProfileFailure";
-import fetchCategories from "./categories/fetchCategories";
-import fetchCategoriesSuccess from "./categories/fetchCategoriesSuccess";
-import fetchCategoriesFailure from "./categories/fetchCategoriesFailure";
-
-export {
-  fetchPosts,
-  fetchPostsSuccess,
-  fetchPostsFailure,
-  fetchPost,
-  fetchPostSuccess,
-  fetchPostFailure,
-  createPost,
-  deletePost,
-  updatePost,
-  updatePostSuccess,
-  updatePostFailure,
-  fetchProfile,
-  fetchProfileSuccess,
-  fetchProfileFailure,
-  fetchCategories,
-  fetchCategoriesSuccess,
-  fetchCategoriesFailure,
-};
+export { default as userLogin } from "./user/userLogin";
+export { default as userLoginSuccess } from "./user/userLoginSuccess";
+export { default as userLoginFailure } from "./user/userLoginFailure";
+export { default as userLogout } from "./user/userLogout";
+export { default as userCheckSession } from "./user/userCheckSession";
+export { default as userCheckSessionSuccess } from "./user/userCheckSessionSuccess";
+export { default as userCheckSessionFailure } from "./user/userCheckSessionFailure";
+export { default as fetchPosts } from "./posts/fetchPosts";
+export { default as fetchPostsSuccess } from "./posts/fetchPostsSuccess";
+export { default as fetchPostsFailure} from "./posts/fetchPostsFailure";
+export { default as fetchPost } from "./post/fetchPost";
+export { default as fetchPostSuccess } from "./post/fetchPostSuccess";
+export { default as fetchPostFailure } from "./post/fetchPostFailure";
+export { default as createPost} from "./posts/createPost";
+export { default as deletePost } from "./posts/deletePost";
+export { default as updatePost } from "./post/updatePost";
+export { default as updatePostSuccess } from "./post/updatePostSuccess";
+export { default as updatePostFailure } from "./post/updatePostFailure";
+export { default as fetchCategories } from "./categories/fetchCategories";
+export { default as fetchCategoriesSuccess } from "./categories/fetchCategoriesSuccess";
+export { default as fetchCategoriesFailure } from "./categories/fetchCategoriesFailure";

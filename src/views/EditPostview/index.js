@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Grid, Header } from "semantic-ui-react";
-import { fetchPost, updatePost } from "../../store/actions";
+import { fetchPost } from "store/actions";
+import PostForm from "components/PostForm";
+import Spinner from "components/Spinner";
+import { updatePost } from "store/actions";
 
 import "./style.scss";
-import Spinner from "../../components/Spinner";
-import PostForm from "../../components/PostForm";
 
 function EditPostView(props) {
   const { id } = props.match.params;
@@ -20,22 +21,23 @@ function EditPostView(props) {
 
   // Component did mount
   useEffect(() => {
+    // Request post data
     dispatch(fetchPost(id));
-  }, [id]);
+  }, [dispatch, id]);
 
   function onSubmit(data) {
     dispatch(updatePost(data));
   }
 
   if (isFetching) {
-    return <Spinner />
+    return <Spinner />;
   }
 
   return (
     <Grid centered>
       <Grid.Row>
         <Grid.Column mobile={16} tablet={10} computer={10}>
-          <Header as="h1" textAlign="center" className="page-title">Edit post</Header>
+          <Header as="h1" textAlign="center" style={{ marginBottom: "2em" }}>Edit post</Header>
           <PostForm post={post} onSubmit={onSubmit} />
         </Grid.Column>
       </Grid.Row>

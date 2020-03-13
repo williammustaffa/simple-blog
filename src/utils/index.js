@@ -1,7 +1,3 @@
-import groupArray from "./groupArray";
-import extractContentFromHtmlString from "./extractContentFromHtmlString";
-
-export default {
-  groupArray,
-  extractContentFromHtmlString,
-};
+export { default as groupArray } from "./groupArray";
+export { default as extractContentFromHtmlString } from "./extractContentFromHtmlString";
+export { default as clone } from "./clone";

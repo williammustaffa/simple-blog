@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Grid, Form, Header } from "semantic-ui-react";
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 
 import "./style.scss";
 
@@ -9,11 +9,11 @@ function RegisterView() {
 
   useEffect(() => {
     function validatePassword(value) {
-      return value && /^\S+$/.test(value) && value.length > 5;
+      return value && /^\S+$/.test(value) && value.length >= 5;
     }
   
     function validateConfirmPassword(value) {
-      return value && value === watch('password');
+      return value && value === watch("password");
     }
 
     register({ name: "firstName" }, { required: true });
@@ -46,61 +46,61 @@ function RegisterView() {
             <Header.Subheader>Be an author!</Header.Subheader>
           </Header>
           <Form onSubmit={handleSubmit(onSubmit)} style={{ marginBottom: "2em" }}>
-            <Form.Group widths='equal'>
+            <Form.Group widths="equal">
               <Form.Input
                 fluid
                 name="firstName"
                 onChange={updateFormField}
-                error={getError('firstName')}
-                label='First name'
+                error={getError("firstName")}
+                label="First name"
               />
               <Form.Input
                 fluid
                 name="lastName"
                 onChange={updateFormField}
-                error={getError('lastName')}
-                label='Last name'
+                error={getError("lastName")}
+                label="Last name"
               />
             </Form.Group>
             <Form.Input
               fluid
               name="username"
               onChange={updateFormField}
-              error={getError('username')}
+              error={getError("username")}
               icon="at"
               iconPosition="left"
-              label='Username'
+              label="Username"
             />
             <Form.Input
               fluid
               name="email"
               onChange={updateFormField}
-              error={getError('email')}
-              label='E-mail'
+              error={getError("email")}
+              label="E-mail"
             />
             <Form.TextArea
               name="description"
               onChange={updateFormField}
-              error={getError('description')}
-              label='About'
-              placeholder='Tell us more about you...'
+              error={getError("description")}
+              label="About"
+              placeholder="Tell us more about you..."
             />
-            <Form.Group widths='equal'>
+            <Form.Group widths="equal">
               <Form.Input
                 fluid
                 name="password"
                 onChange={updateFormField}
-                error={getError('password')}
+                error={getError("password")}
                 type="password"
-                label='Password'
+                label="Password"
               />
               <Form.Input
                 fluid
                 name="confirmPassword"
                 onChange={updateFormField}
-                error={getError('confirmPassword')}
+                error={getError("confirmPassword")}
                 type="password"
-                label='Confirm password'
+                label="Confirm password"
               />
             </Form.Group>
             <Form.Button fluid style={{ marginTop: "2em" }}>Register</Form.Button>

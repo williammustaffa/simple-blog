@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import HTMLEllipsis from 'react-lines-ellipsis/lib/html'
-import { push } from 'connected-react-router';
-import { useDispatch } from 'react-redux';
-import { Card, Label } from 'semantic-ui-react'
+import React from "react";
+import PropTypes from "prop-types";
+import HTMLEllipsis from "react-lines-ellipsis/lib/html"
+import { push } from "connected-react-router";
+import { useDispatch } from "react-redux";
+import { Card, Label, Icon } from "semantic-ui-react";
 
 function PostCard({ post }) {
   const dispatch = useDispatch();
@@ -37,6 +37,10 @@ function PostCard({ post }) {
       </Card.Content>
       <Card.Content extra>
         {post.categories.map(renderCategoryLabel)}
+      </Card.Content>
+      <Card.Content extra textAlign="right">
+        <span>{post.likes.length} <Icon color="red" name="heart" /></span>
+        <span>{post.comments.length} <Icon name="comment" /></span>
       </Card.Content>
     </Card>
   );

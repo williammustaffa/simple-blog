@@ -1,10 +1,10 @@
+import types from "store/types";
 import { put, call, takeLatest } from "redux-saga/effects";
-import { getBlogAPIConnector } from "../api/BlogAPI";
-import { updatePostSuccess, updatePostFailure } from "../actions";
-import types from "../types";
+import { getBlogAPIConnector } from "store/api/BlogAPI";
+import { updatePostSuccess, updatePostFailure } from "store/actions";
 
 /**
- * Fetch a single post data by passing its id
+ * Update post by given id
  */
 export function* updatePost({ payload }) {
   try {

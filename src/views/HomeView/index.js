@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Grid } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts } from '../../store/actions';
-import Spinner from "../../components/Spinner";
+import { fetchPosts } from "store/actions";
+import Spinner from "components/Spinner";
 import PostCard from "./PostCard";
 
 import "./style.scss";

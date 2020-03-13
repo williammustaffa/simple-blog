@@ -1,4 +1,4 @@
-import types from "../../types";
+import types from "store/types";
 
 export default function fetchPost(payload) {
   return {

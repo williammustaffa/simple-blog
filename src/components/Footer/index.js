@@ -1,17 +1,18 @@
 import React from "react";
-import { Grid, Segment, Container, Image } from "semantic-ui-react";
-import logoInverted from "../../assets/images/logo-inverted.svg";
+import { Grid, Segment, Container, } from "semantic-ui-react";
 
 import "./style.scss";
 
 function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <Segment inverted vertical className="custom-footer">
       <Container>
-        <Grid centered>
+        <Grid>
           <Grid.Row>
-            <Grid.Column mobile={16} tablet={8} computer={3}>
-              <Image src={logoInverted} alt="inverted logo" />
+            <Grid.Column textAlign="center">
+              Simple Blog © {year}
             </Grid.Column>
           </Grid.Row>
           </Grid>

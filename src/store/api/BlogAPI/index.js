@@ -1,5 +1,6 @@
 
-import FakeDB from "../FakeDB";
+import database from "store/api/database";
+import { clone } from "utils/index.js";
 
 const retrieveDataDelayed = (value, time = 3000) => {
   return new Promise(resolve => {
@@ -7,114 +8,142 @@ const retrieveDataDelayed = (value, time = 3000) => {
   });
 }
 
-function clone(targetObject) {
-  return JSON.parse(
-    JSON.stringify(targetObject)
-  );
+const retrieveErrorDelayed = (value, time = 3000) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => reject({ message: value }), time);
+  });
+}
+
+const tokenize = ({ id, email }) => {
+  return btoa(JSON.stringify({ id, email }));
+}
+
+const getTokenizedInfo = token => {
+  return token && JSON.parse(atob(token));
 }
 
 class BlogAPI {
-  createPost() {
+  /**
+   * Fetch relational data from post object
+   * @param {object} post 
+   */
+  populatePostData(post) {
+    // Fetch categories data
+    post.categories = post.categories.map(categoryId => {
+      return database.queryAll("categories", {
+        query: { id: categoryId }
+      })[0];
+    });
 
+    // Fetch author
+    post.author = database.queryAll("profiles", {
+      query: { id: post.author }
+    })[0];
+
+    return post;
   }
 
-  deletePost() {
+  userCheckSession() {
+    const authToken = localStorage.getItem("authToken");
 
-  }
+    const data = getTokenizedInfo(authToken);
 
-  createProfile(profile) {
-    
-  }
+    const results = database.queryAll("profiles", {
+      query: { id: data.id },
+    });
 
-  updatePost(payload) {
-    const { posts } = FakeDB;
-
-    const response = posts
-      .find(post => String(post.id) === String(payload.id));
-
-    if (response) {
-      response.title = payload.title;
-      response.imageUrl = payload.imageUrl;
-      response.content = payload.content;
-      response.categories = payload.categories;
+    if (!results.length) {
+      return retrieveErrorDelayed("No session found.");
     }
 
-    return retrieveDataDelayed(response, 3000)
+    const user = clone(results[0]);
+
+    // No need to delay on first load
+    return user;
+  }
+
+  /**
+   * Do user login by given crendentials
+   * @param {object} credentials 
+   */
+  userLogin(credentials) {
+    delete credentials.redirectUrl;
+
+    const results = database.queryAll("profiles", {
+      query: credentials,
+    });
+
+    if (!results.length) {
+      return retrieveErrorDelayed("You have entered an invalid username or password");
+    }
+
+    const user = clone(results[0]);
+
+    // Fake a token storage
+    localStorage.setItem("authToken", tokenize(user));
+
+    return retrieveDataDelayed(user, 3000);
+  }
+
+  userLogout() {
+    // Clear token
+    localStorage.removeItem("authToken");
+  }
+
+  /**
+   * Update post
+   * Works like a PUT request
+   */
+  updatePost = (payload) => {
+    database.update("posts", { id: payload.id }, post => {
+      post.title = payload.title;
+      post.imageUrl = payload.imageUrl;
+      post.content = payload.content;
+      post.categories = payload.categories;
+
+      return post;
+    });
+
+    // Save data
+    database.commit();
+
+    // Retrieve post
+    return this.fetchPost(payload.id);
   }
 
   /**
    * Fetch categories list
    */
-  fetchCategories() {
-    const { categories } = FakeDB;
+  fetchCategories = () => {
+    const results = database.queryAll("categories");
+    const categories = clone(results);
 
-    // Clone original data
-    const _categories = clone(categories);
-
-    // Return a fake API response
-    const response = {
-      items: _categories,
-    };
-
-    return retrieveDataDelayed(response, 4000);
+    return retrieveDataDelayed(categories, 2000);
   }
 
   /**
    * Fetch post by id
    * @param {string} id 
    */
-  fetchPost(id) {
-    const { posts, profiles, categories } = FakeDB;
+  fetchPost = (id) => {
+    const results = database.queryAll("posts", { query: { id } });
 
-    // Clone original data
-    const _posts = clone(posts);
-    const _profiles = clone(profiles);
-    const _categories = clone(categories);
-
-    // Find respective post
-    const response = _posts
-      .find(post => String(post.id) === String(id));
-
-    // Link author data
-    if (response) {
-      response.author = _profiles
-        .find(profile => String(profile.id) === String(response.author));
-
-      response.categories = response.categories
-        .map(catId => _categories.find(_cat => String(_cat.id) === String(catId)))
-        .filter(category => !!category);
+    if (!results.length) {
+      throw new Error(`Post with id ${id} not found.`);
     }
 
-    return retrieveDataDelayed(response);
+    const post = this.populatePostData(clone(results[0]));
+    return retrieveDataDelayed(post);
   }
 
   /**
    * Fetch list of posts
    */
-  fetchPosts() {
-    const { posts, profiles, categories } = FakeDB;
+  fetchPosts = (filter = {}) => {
+    const results = database.queryAll("posts", filter);
+    const posts = clone(results).map(this.populatePostData);
 
-    // Clone original data
-    const _posts = clone(posts);
-    const _profiles = clone(profiles);
-    const _categories = clone(categories);
-
-    // Map posts and link author data
-    for (const post of _posts) {
-      post.author = _profiles
-        .find(profile => String(profile.id) === String(post.author));
-
-      post.categories = post.categories
-        .map(catId => _categories.find(cat => String(cat.id) === String(catId)))
-        .filter(category => !!category);
-    }
-
-    // Return a fake API response
-    const response = {
-      items: _posts,
-    };
-
-    return retrieveDataDelayed(response);
+    return retrieveDataDelayed(posts);
   }
 }
 

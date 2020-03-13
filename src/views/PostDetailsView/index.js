@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { push } from "connected-react-router";
-import { Grid, Header, Divider, Image, Icon, Label } from "semantic-ui-react";
-import Spinner from "../../components/Spinner";
-import { fetchPost } from "../../store/actions";
+import { Grid, Header, Divider, Image, Icon, Label, Button } from "semantic-ui-react";
+import Spinner from "components/Spinner";
+import { fetchPost } from "store/actions";
 
 import "./style.scss";
 
@@ -66,6 +66,16 @@ function PostDetailsView(props) {
         <div className="content clearfix">
           <p dangerouslySetInnerHTML={{ __html: post.content }}></p>
         </div>
+        <Divider />
+        <Button as="div" size="tiny" labelPosition="right">
+          <Button>
+            <Icon name="heart" />
+            Like
+          </Button>
+          <Label as="a" basic pointing="left">
+            2,048
+          </Label>
+        </Button>
       </Grid.Column>
     </Grid>
   );
