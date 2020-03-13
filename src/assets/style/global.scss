@@ -7,6 +7,16 @@ body {
   flex-direction: column;
   min-height: 100vh;
 
+  .sb-spacing {
+    &-top {
+      margin-top: 2em;
+    }
+
+    &-bottom {
+      margin-bottom: 2em;
+    }
+  }
+
   .page-title {
     margin-bottom: 2em;
   }

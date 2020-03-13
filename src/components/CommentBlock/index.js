@@ -16,12 +16,12 @@ function CommentBlock({ post }) {
 
   const navigateTo = path => () => dispatch(push(path));
 
-// Form validation
-const { register, handleSubmit, errors, setValue, triggerValidation } = useForm({
-  defaultValues: {
-    comment: "",
-  }
-});
+  // Form validation
+  const { register, handleSubmit, errors, setValue, triggerValidation } = useForm({
+    defaultValues: {
+      comment: "",
+    }
+  });
 
   // Component did mount
   useEffect(() => {

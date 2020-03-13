@@ -18,7 +18,7 @@ export function* togglePostLike({ payload }) {
 } 
 
 /**
- * Watch FETCH_CATEGORIES action
+ * Watch TOGGLE_POST_LIKE action
  */
 export function* watchTogglePostLikeAsync() {
   yield takeEvery(types.TOGGLE_POST_LIKE, togglePostLike);

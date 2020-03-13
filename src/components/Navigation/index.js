@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { push } from "connected-react-router";
-import { Button, Menu, Container, Input, Dropdown, Icon } from "semantic-ui-react";
+import { useForm } from "react-hook-form";
+import { Button, Menu, Container, Input, Dropdown, Icon, Form } from "semantic-ui-react";
 import CategoryMenuItem from "components/CategoryMenuItem";
 import { userLogout } from "store/actions";
 
@@ -11,12 +12,29 @@ function Navigation() {
   const dispatch = useDispatch();
   const navigateTo = path => () => dispatch(push(path));
 
+  const { register, handleSubmit, setValue, triggerValidation } = useForm();
+
+  useEffect(() => {
+    register({ name: "searchTerm" }, { required: true });
+  }, [register]);
+
+  async function updateFormField(e, { name, value }) {
+    setValue(name, value);
+    await triggerValidation({ name });
+  }
+
   const { user } = useSelector(state => ({
     user: state.user,
   }));
 
   function onLogoutClick() {
     dispatch(userLogout());
+  }
+
+  function onSearchSubmit(data) {
+    if (data.searchTerm) {
+      dispatch(push(`/search?searchTerm=${data.searchTerm}`));
+    }
   }
 
   return (
@@ -31,7 +49,14 @@ function Navigation() {
 
         <Menu.Menu position="right">
           <Menu.Item>
-            <Input icon="search" placeholder="Search..." />
+            <Form onSubmit={handleSubmit(onSearchSubmit)}>
+              <Input
+                name="searchTerm"
+                icon="search"
+                placeholder="Search..."
+                onChange={updateFormField}
+              />
+            </Form>
           </Menu.Item>
           {
             user.isLoggedIn ?

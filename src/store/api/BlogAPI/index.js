@@ -70,6 +70,48 @@ class BlogAPI {
   }
 
   /**
+   * Create a user profile
+   */
+  createProfile = (payload) => {
+    const errors = [];
+
+    const existingUserEmail = database.queryAll("profiles", {
+      query: { email: payload.email }
+    });
+
+    const existingUserUsername = database.queryAll("profiles", {
+      query: { username: payload.username }
+    });
+
+    if (existingUserEmail.length) {
+      errors.push("The email address provided is already in use.");
+    }
+
+    if (existingUserUsername.length) {
+      errors.push("The username provided is already in use.");
+    }
+
+    if (errors.length) {
+      return retrieveErrorDelayed(errors.join("\r\n"));
+    }
+
+    database.insert("profiles", {
+      id: uuidv1(),
+      email: payload.email,
+      username: payload.username,
+      firstName: payload.firstName,
+      lastName: payload.lastName,
+      description: payload.description,
+      password: payload.password,
+    });
+
+    database.commit();
+
+    // Create user and login
+    return this.userLogin(payload);
+  }
+
+  /**
    * Check user session an then populate data if needed
    */
   userCheckSession = () => {
@@ -95,11 +137,9 @@ class BlogAPI {
    * Do user login by given crendentials
    * @param {object} credentials 
    */
-  userLogin(credentials) {
-    delete credentials.redirectUrl;
-
+  userLogin({ email, password }) {
     const results = database.queryAll("profiles", {
-      query: credentials,
+      query: { email, password },
     });
 
     if (!results.length) {
@@ -248,7 +288,27 @@ class BlogAPI {
    * Fetch list of posts
    */
   fetchPosts = (filter = {}) => {
-    const results = database.queryAll("posts", filter);
+    const results = database.queryAll("posts", {
+      query: row => {
+        if (filter.category) {
+          return row.categories
+            .includes(filter.category);
+        }
+  
+        if (filter.searchTerm) {
+          const parsedTerm = filter.searchTerm.replace(/\s+/, ".*");
+          const searchTermRegExp = new RegExp(parsedTerm, "gmi");
+  
+          return (
+            searchTermRegExp.test(row.title) ||
+            searchTermRegExp.test(row.content)
+          );
+        }
+  
+        return true;
+      }
+    });
+
     const posts = clone(results).map(this.populatePostData);
 
     return retrieveDataDelayed(posts);

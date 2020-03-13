@@ -14,7 +14,7 @@ function CategoryMenuItem() {
   }));
 
   const renderCategoryItem = (category)  => (
-    <Dropdown.Item key={category.id} onClick={navigateTo(`/category/${category.id}}`)}>
+    <Dropdown.Item key={category.id} onClick={navigateTo(`/search?category=${category.id}`)}>
       {category.displayName}
     </Dropdown.Item>
   );

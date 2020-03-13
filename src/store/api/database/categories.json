@@ -1,41 +1,41 @@
 [
   {
-    "id": "c1",
+    "id": "be962752-6562-11ea-bc55-0242ac130003",
     "displayName": "Funny",
     "labelColor": "red"
   },
   {
-    "id": "c2",
+    "id": "db88d300-6562-11ea-bc55-0242ac130003",
     "displayName": "Politics",
     "labelColor": "yellow"
   },
   {
-    "id": "c3",
+    "id": "e1d6c762-6562-11ea-bc55-0242ac130003",
     "displayName": "Geek",
     "labelColor": "black"
   },
   {
-    "id": "c4",
+    "id": "e80d59e8-6562-11ea-bc55-0242ac130003",
     "displayName": "Sports",
     "labelColor": "teal"
   },
   {
-    "id": "c5",
+    "id": "eca6b788-6562-11ea-bc55-0242ac130003",
     "displayName": "Cute",
     "labelColor": "pink"
   },
   {
-    "id": "c6",
+    "id": "f3329f04-6562-11ea-bc55-0242ac130003",
     "displayName": "Technology",
     "labelColor": "violet"
   },
   {
-    "id": "c7",
+    "id": "f821edee-6562-11ea-bc55-0242ac130003",
     "displayName": "E-sports",
     "labelColor": "olive"
   },
   {
-    "id": "c8",
+    "id": "fcae9272-6562-11ea-bc55-0242ac130003",
     "displayName": "World",
     "labelColor": "green"
   }

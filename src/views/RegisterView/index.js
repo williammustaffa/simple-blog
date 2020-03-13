@@ -1,11 +1,19 @@
 import React, { useEffect } from "react";
-import { Grid, Form, Header } from "semantic-ui-react";
+import { Grid, Form, Header, Message } from "semantic-ui-react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { createProfile } from "store/actions";
 
 import "./style.scss";
-import createProfile from "store/actions/profiles/createProfile";
 
 function RegisterView() {
+  const { errorMessage, isFetching } = useSelector(state => ({
+    isFetching: state.user.isFetching,
+    errorMessage: state.user.errorMessage,
+  }));
+
+  const dispatch = useDispatch();
+
   const { register, handleSubmit, errors, setValue, triggerValidation, watch } = useForm();
 
   useEffect(() => {
@@ -35,18 +43,18 @@ function RegisterView() {
   }
 
   function onSubmit(data) {
-    dispatchEvent(createProfile(data));
+    dispatch(createProfile(data));
   }
 
   return (
     <Grid centered>
       <Grid.Row columns={2}>
         <Grid.Column>
-          <Header as="h1" textAlign="center" style={{ marginBottom: "2em" }}>
+          <Header as="h1" textAlign="center" className="sb-spacing-bottom">
             Register to Simple Blog
             <Header.Subheader>Be an author!</Header.Subheader>
           </Header>
-          <Form onSubmit={handleSubmit(onSubmit)} style={{ marginBottom: "2em" }}>
+          <Form onSubmit={handleSubmit(onSubmit)} className="sb-spacing-bottom" loading={isFetching}>
             <Form.Group widths="equal">
               <Form.Input
                 fluid
@@ -104,7 +112,11 @@ function RegisterView() {
                 label="Confirm password"
               />
             </Form.Group>
-            <Form.Button fluid style={{ marginTop: "2em" }}>Register</Form.Button>
+            {errorMessage && <Message negative>
+              <Message.Header>Login failed</Message.Header>
+              <p>{errorMessage}</p>
+            </Message>}
+            <Form.Button fluid className="sb-spacing-top">Register</Form.Button>
           </Form>
         </Grid.Column>
       </Grid.Row>

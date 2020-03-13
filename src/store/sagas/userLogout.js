@@ -14,7 +14,7 @@ export function* userLogout() {
 } 
 
 /**
- * Watch FETCH_POST action
+ * Watch USER_LOGOUT action
  */
 export function* watchUserLogoutAsync() {
   yield takeLatest(types.USER_LOGOUT, userLogout);

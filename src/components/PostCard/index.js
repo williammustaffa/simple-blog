@@ -5,6 +5,8 @@ import { push } from "connected-react-router";
 import { useDispatch } from "react-redux";
 import { Card, Label, Icon } from "semantic-ui-react";
 
+import "./style.scss";
+
 function PostCard({ post }) {
   const dispatch = useDispatch();
   const navigateTo = path => () => dispatch(push(path));
@@ -17,13 +19,13 @@ function PostCard({ post }) {
 
   return (
     <Card fluid>
-      <div className="card-image" style={{ backgroundImage: `url(${post.imageUrl})` }}></div>
+      <div className="clickable card-image" onClick={navigateTo(post.url)} style={{ backgroundImage: `url(${post.imageUrl})` }}></div>
       <Card.Content>
         <Card.Header onClick={navigateTo(post.url)}>
           <span className="clickable" >{post.title}</span>
         </Card.Header>
         <Card.Meta>Posted by <span className="link static">@{post.author.username}</span></Card.Meta>
-        <Card.Description>
+        <Card.Description className="clickable" onClick={navigateTo(post.url)}>
           <HTMLEllipsis
             unsafeHTML={post.content}
             maxLine="3"
@@ -35,7 +37,7 @@ function PostCard({ post }) {
       <Card.Content extra>
         {post.categories.map(renderCategoryLabel)}
       </Card.Content>
-      <Card.Content extra textAlign="right">
+      <Card.Content className="clickable" onClick={navigateTo(post.url)} extra textAlign="right">
         <span>{post.likes.length} <Icon name="heart" /></span>
         <span>{post.comments.length} <Icon name="comment" /></span>
       </Card.Content>

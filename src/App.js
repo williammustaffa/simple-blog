@@ -16,13 +16,15 @@ import PostDetailsView from "./views/PostDetailsView";
 import DashboardView from "./views/DashboardView";
 import EditPostView from "./views/EditPostview";
 import CreatePostView from "./views/CreatePostView";
+import SearchResultsView from "./views/SearchResultsView";
 import NotFoundView from "./views/NotFoundView";
 
 // Global styles
 import "./assets/style/global.scss";
 import "semantic-ui-css/semantic.min.css";
 
-const PrivateRoute = ({ component, ...options }) => {
+// Private route component
+function PrivateRoute({ component, ...options }) {
   const { user } = useSelector(state => ({
     user: state.user,
   }));
@@ -34,6 +36,7 @@ const PrivateRoute = ({ component, ...options }) => {
   );
 };
 
+// Main app component
 function App() {
   // App initialization
   const dispatch = useDispatch();
@@ -49,8 +52,9 @@ function App() {
       <Container className="app-container">
         <Switch>
           <Route exact path="/" component={HomeView} />
-          <Route path="/login" component={LoginView} />
-          <Route path="/register" component={RegisterView} />
+          <Route path="/search" component={SearchResultsView} />
+          <Route exact path="/login" component={LoginView} />
+          <Route exact path="/register" component={RegisterView} />
           <Route path="/post/:id/:name" component={PostDetailsView} />
           <PrivateRoute exact path="/dashboard" component={DashboardView} />
           <PrivateRoute exact path="/dashboard/post" component={CreatePostView} />

@@ -3,6 +3,23 @@ import types from "store/types";
 
 const reducer = (state = [], { type, payload }) => {
   switch (type) {
+    case types.CREATE_PROFILE:
+      return {
+        ...state,
+        isFetching: true,
+        isLoggedIn: false,
+        profile: new Profile(),
+        errorMessage: ""
+      };
+
+    case types.CREATE_PROFILE_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        profile: new Profile(),
+        errorMessage: payload.message
+      };
+
     case types.USER_CHECK_SESSION:
       return {
         ...state,

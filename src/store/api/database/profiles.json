@@ -1,6 +1,6 @@
 [
   {
-    "id": "a1",
+    "id": "3d1b2c62-6563-11ea-bc55-0242ac130003",
     "email": "william.lima@mail.com",
     "username": "william.lima",
     "firstName": "William",
@@ -10,7 +10,7 @@
     "password": "12345"
   },
   {
-    "id": "a2",
+    "id": "417d901a-6563-11ea-bc55-0242ac130003",
     "email": "john.doe@mail.com",
     "username": "john.doe",
     "firstName": "John",
@@ -20,7 +20,7 @@
     "password": "12345"
   },
   {
-    "id": "a3",
+    "id": "458f81ea-6563-11ea-bc55-0242ac130003",
     "email": "james.manco@mail.com",
     "username": "james.manco",
     "firstName": "James",
@@ -30,7 +30,7 @@
     "password": "12345"
   },
   {
-    "id": "a4",
+    "id": "4ab08336-6563-11ea-bc55-0242ac130003",
     "email": "james.manco@mail.com",
     "username": "joseph.moe",
     "firstName": "Joseph",
@@ -40,7 +40,7 @@
     "password": "12345"
   },
   {
-    "id": "a5",
+    "id": "4fbec630-6563-11ea-bc55-0242ac130003",
     "email": "mate.demon@mail.com",
     "username": "mate.demon",
     "firstName": "Mate",

@@ -18,7 +18,7 @@ export function* updatePost({ payload }) {
 } 
 
 /**
- * Watch FETCH_POST action
+ * Watch UPDATE_POST action
  */
 export function* watchUpdatePostAsync() {
   yield takeLatest(types.UPDATE_POST, updatePost);

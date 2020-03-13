@@ -10,6 +10,7 @@ import { watchAddPostCommentAsync } from "./addPostComment";
 import { watchTogglePostLikeAsync } from "./togglePostLike";
 import { watchCreatePostAsync } from "./createPost";
 import { watchDeletePostAsync } from "./deletePost";
+import { watchCreateProfileAsync } from "./createProfile";
 
 /**
  * Root saga provided to redux middleware
@@ -27,6 +28,7 @@ function* root() {
     watchTogglePostLikeAsync(),
     watchCreatePostAsync(),
     watchDeletePostAsync(),
+    watchCreateProfileAsync(),
   ]);
 }
 

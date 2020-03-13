@@ -29,3 +29,5 @@ export { default as updatePostFailure } from "./post/updatePostFailure";
 export { default as fetchCategories } from "./categories/fetchCategories";
 export { default as fetchCategoriesSuccess } from "./categories/fetchCategoriesSuccess";
 export { default as fetchCategoriesFailure } from "./categories/fetchCategoriesFailure";
+export { default as createProfile } from "./profiles/createProfile";
+export { default as createProfileFailure } from "./profiles/createProfileFailure";

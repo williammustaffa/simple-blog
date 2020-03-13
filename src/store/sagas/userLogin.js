@@ -14,14 +14,14 @@ export function* userLogin({ payload }) {
     const result = yield call(connector.userLogin, payload);
 
     yield put(userLoginSuccess(result));
-    yield put(push(redirectUrl))
+    yield put(push(redirectUrl));
   } catch (e) {
     yield put(userLoginFailure(e));
   }
 } 
 
 /**
- * Watch FETCH_POST action
+ * Watch USER_LOGIN action
  */
 export function* watchUserLoginAsync() {
   yield takeLatest(types.USER_LOGIN, userLogin);

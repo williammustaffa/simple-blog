@@ -18,7 +18,7 @@ export function* userCheckSession() {
 } 
 
 /**
- * Watch FETCH_POST action
+ * Watch USER_CHECK_SESSION action
  */
 export function* watchUserCheckSessionAsync() {
   yield takeLatest(types.USER_CHECK_SESSION, userCheckSession);
