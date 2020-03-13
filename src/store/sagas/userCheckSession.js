@@ -1,7 +1,7 @@
-import types from "../types";
+import types from "store/types";
 import { put, call, takeLatest } from "redux-saga/effects";
-import { getBlogAPIConnector } from "../api/BlogAPI";
-import { userCheckSessionSuccess, userCheckSessionFailure } from "../actions";
+import { getBlogAPIConnector } from "store/api/BlogAPI";
+import { userCheckSessionSuccess, userCheckSessionFailure } from "store/actions";
 
 /**
  * Check if user has an existing session

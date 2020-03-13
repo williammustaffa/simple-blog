@@ -1,8 +1,8 @@
-import types from "../types";
+import types from "store/types";
 import { push } from "connected-react-router"
 import { put, call, takeLatest } from "redux-saga/effects";
-import { getBlogAPIConnector } from "../api/BlogAPI";
-import { userLoginSuccess, userLoginFailure } from "../actions";
+import { getBlogAPIConnector } from "store/api/BlogAPI";
+import { userLoginSuccess, userLoginFailure } from "store/actions";
 
 /**
  * Check if credentials match on the database and redirect

@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Form } from "semantic-ui-react";
 import { useForm } from "react-hook-form";
-import TextEditor from "../TextEditor";
-import CategoryDropdown from "../CategoryDropdown";
-import extractContentFromHtmlString from "../../utils/extractContentFromHtmlString";
-import Post from "../../store/models/Post";
+import TextEditor from "components/TextEditor";
+import CategoryDropdown from "components/CategoryDropdown";
+import extractContentFromHtmlString from "utils/extractContentFromHtmlString";
+import Post from "store/models/Post";
 
 function PostForm(props = {}) {
   const { post = new Post(), onSubmit } = props;

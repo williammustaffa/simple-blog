@@ -6,6 +6,7 @@ import Spinner from "components/Spinner";
 import { fetchPost } from "store/actions";
 
 import "./style.scss";
+import CommentForm from "components/CommentForm";
 
 function PostDetailsView(props) {
   const { id } = props.match.params;
@@ -76,6 +77,7 @@ function PostDetailsView(props) {
             2,048
           </Label>
         </Button>
+        <CommentForm />
       </Grid.Column>
     </Grid>
   );
