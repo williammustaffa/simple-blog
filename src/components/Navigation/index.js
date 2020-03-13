@@ -31,10 +31,12 @@ function Navigation() {
     dispatch(userLogout());
   }
 
-  function onSearchSubmit(data) {
+  function onSearchSubmit(data, e) {
     if (data.searchTerm) {
       dispatch(push(`/search?searchTerm=${data.searchTerm}`));
     }
+
+    e.target.reset();
   }
 
   return (
@@ -48,7 +50,7 @@ function Navigation() {
 
 
         <Menu.Menu position="right">
-          <Menu.Item>
+          <Menu.Item className="header-search">
             <Form onSubmit={handleSubmit(onSearchSubmit)}>
               <Input
                 name="searchTerm"
@@ -68,8 +70,8 @@ function Navigation() {
               </Dropdown.Menu>
             </Dropdown> :
             <Menu.Item>
-              <Button secondary onClick={navigateTo("/register")} style={{ marginRight: 5 }}>Register</Button>
-              <Button color="red" onClick={navigateTo("/login")}>Log in</Button>
+              <Button secondary className="header-register-btn" onClick={navigateTo("/register")} style={{ marginRight: 5 }}>Register</Button>
+              <Button color="red" className="header-login-btn" onClick={navigateTo("/login")}>Log in</Button>
             </Menu.Item>
           }
         </Menu.Menu>

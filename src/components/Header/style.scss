@@ -1,3 +1,10 @@
-.ui.grid.custom-header {
+.custom-header {
   margin-bottom: 4em;
+
+  .ui.image.header-logo {
+    display: block;
+    margin: 0 auto;
+    max-width: 400px;
+    width: 100%;
+  }
 }

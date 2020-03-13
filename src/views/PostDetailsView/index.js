@@ -91,9 +91,9 @@ function PostDetailsView(props) {
         {
           post.imageUrl &&
           <Image
+            centered
             className="post-banner-image"
             src={post.imageUrl}
-            centered
             onLoad={onImageLoad}
             onError={onImageFailure}
           />

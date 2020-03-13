@@ -29,11 +29,11 @@ function DashboardView() {
   return (
     <div>
       <Header as="h1">Welcome, {profile.firstName}!</Header>
-      <Grid columns={2}>
-        <Grid.Column>
+      <Grid>
+        <Grid.Column mobile={16} table={8} computer={8}>
           <CategoriesVSPostsChart posts={posts} categories={categories} />
         </Grid.Column>
-        <Grid.Column>
+        <Grid.Column mobile={16} table={8} computer={8}>
           <MostEngagedPostsChart posts={posts} />
         </Grid.Column>
       </Grid>

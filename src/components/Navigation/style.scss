@@ -1,4 +1,16 @@
-.header-navitagion {
+.header-navigation {
   background: #2e2e2e;
-  border-radius: 0;
+  border-radius: 0 !important;
+
+
+  @media (max-width: 767px) {
+    // Force some elements to hide on mobile due responsivity issues
+    // TODO: handle mobile search bar and login/register buttons for mobile
+    &.ui.menu {
+      .header-register-btn,
+      .item.header-search {
+        display: none;
+      }
+    }
+  }
 }

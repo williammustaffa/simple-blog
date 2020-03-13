@@ -1,6 +1,20 @@
 ## Simple Blog
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) along with [Redux](https://redux.js.org/) and [Redux Saga](https://redux.js.org/).
+A simple blog application using the React Hooks, Redux, Redux-Saga and localStorageDB as a storage service.
+
+## Pre defined users
+| Email | Password |
+| ------------- | ------------- |
+| john.doe@mail.com | 12345 |
+| william.lima@mail.com | 12345 |
+| joseph.moe@mail.com | 12345 |
+| james.manco@mail.com | 12345 |
+| mate.demon@mail.com | 12345 |
+
+
+## Available Scripts
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 
 ## Available Scripts
 
