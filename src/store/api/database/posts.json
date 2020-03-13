@@ -11,7 +11,14 @@
       "c3",
       "c5"
     ],
-    "comments": [],
+    "comments": [
+      {
+        "id": "comment1",
+        "author": "a1",
+        "creationDate": 1575514800000,
+        "content": "Donec ac elit purus. Fusce maximus ipsum vel sapien convallis luct..."
+      }
+    ],
     "likes": []
   },
   {
@@ -29,12 +36,20 @@
       {
         "id": "comment1",
         "author": "a1",
-        "content": "Donec ac elit purus. Fusce maximus ipsum vel sapien convallis luct"
+        "creationDate": 1575514800000,
+        "content": "Donec ac elit purus. Fusce maximus ipsum vel sapien convallis luct..."
       },
       {
-        "id": "comment1",
+        "id": "comment2",
         "author": "a2",
-        "content": "Donec ac elit purus. Fusce maximus ipsum vel sapien convallis luct"
+        "creationDate": 1575514800000,
+        "content": "Nulla pulvinar facilisis ipsum in faucibus. </p><br/><p>Duis in odio laoreet, tristique libero sed, lacinia enim. Suspendisse potenti. Sed tristique massa eu bibendum ultrices. Nulla pulvinar sodales mauris vel varius. Aliquam erat volutpat. Integer tempor, erat ut viverra tincidunt, mauris lorem fringilla ipsum, ac congue velit quam in turpis. Phasellus aliquam eros quis ipsum rhoncus porttitor. Donec quis ligula est. Pellentesque quis euismod lorem, a euismod ipsum.</p><br/><p>Cras arcu diam, sollicitudin rutrum accumsan sit amet, malesuada sed libero. Fusce et felis ut orci eleifend scelerisque et sit amet sem. Quisque finibus efficitur feugiat. Proin vel lorem nibh. Duis tempor erat ex, in varius arcu suscipit vitae. Integer auctor velit diam, ut mattis sapien blandit vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam interdum tincidunt libero ac sollicitudin. Pellentesque vitae ligula sit amet lacus pellentesque vehicula. Phasellus laoreet nisi pulvinar, vulputate lectus vitae, vulputate purus. Vestibulum malesuada elementum diam eget faucibus. Nam imperdiet mollis nibh."
+      },
+      {
+        "id": "comment3",
+        "author": "a4",
+        "creationDate": 1576033200000,
+        "content": "Nunc tristique neque erat, et bibendum dui suscipit id. Nulla pulvinar facilisis ipsum in faucibus. </p><br/><p>Duis in odio laoreet, tristique libero sed, lacinia enim. Suspendisse potenti. Sed tristique massa eu bibendum ultrices. Nulla pulvinar sodales mauris vel varius. Aliquam erat volutpat. Integer tempor, erat ut viverra tincidunt, mauris lorem fringilla ipsum, ac congue velit quam in turpis. Phasellus aliquam eros quis ipsum rhoncus porttitor. Donec quis ligula est. Pellentesque quis euismod lorem, a euismod ipsum.</p><br/><p>Cras arcu diam, sollicitudin rutrum accumsan sit amet, malesuada sed libero. Fusce et felis ut orci eleifend scelerisque et sit amet sem. Quisque finibus efficitur feugiat. Proin vel lorem nibh. Duis tempor erat ex, in varius arcu suscipit vitae. Integer auctor velit diam, ut mattis sapien blandit vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam interdum tincidunt libero ac sollicitudin. Pellentesque vitae ligula sit amet lacus pellentesque vehicula. Phasellus laoreet nisi pulvinar, vulputate lectus vitae, vulputate purus. Vestibulum malesuada elementum diam eget faucibus. Nam imperdiet mollis nibh."
       }
     ],
     "likes": []
@@ -44,12 +59,49 @@
     "imageUrl": "https://cdn.mos.cms.futurecdn.net/RuL5VpCmoZCZWUsNtFheqn-650-80.jpg",
     "creationDate": 1583896648321,
     "title": " Foldable phones: all the rumored and confirmed foldable handsets",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vestibulum nisi non orci lacinia congue. Etiam eget ex lacinia, dictum arcu ut, placerat odio. Vivamus hendrerit sodales vulputate. Nulla aliquam mollis nisi ac condimentum. Duis lobortis gravida urna eu bibendum. Mauris consequat malesuada felis, non dignissim massa feugiat id. Sed varius lobortis semper. Nunc consectetur tincidunt felis sit amet efficitur. Praesent lobortis ac sem nec iaculis. Nulla facilisi. Vestibulum velit augue, porttitor auctor finibus tristique, lobortis vitae dui. Vestibulum gravida nibh sapien, et tempus velit aliquam quis.  ",
+    "content": "Vivamus hendrerit sodales vulputate. Nulla aliquam mollis nisi ac condimentum. Duis lobortis gravida urna eu bibendum. Mauris consequat malesuada felis, non dignissim massa feugiat id. Sed varius lobortis semper. Nunc consectetur tincidunt felis sit amet efficitur. Praesent lobortis ac sem nec iaculis. Nulla facilisi. Vestibulum velit augue, porttitor auctor finibus tristique, lobortis vitae dui. Vestibulum gravida nibh sapien, et tempus velit aliquam quis.  ",
     "author": "a1",
     "categories": [
       "c1"
     ],
-    "comments": [],
+    "comments": [
+      {
+        "id": "comment1",
+        "author": "a1",
+        "creationDate": 1575514800000,
+        "content": "Donec ac elit purus. Fusce maximus ipsum vel sapien convallis luct..."
+      },
+      {
+        "id": "comment2",
+        "author": "a2",
+        "creationDate": 1575514800000,
+        "content": "Phasellus aliquam eros quis ipsum rhoncus porttitor."
+      },
+      {
+        "id": "comment3",
+        "author": "a4",
+        "creationDate": 1576033200000,
+        "content": "Phasellus aliquam eros quis ipsum rhoncus porttitor. Proin vel lorem nibh. Duis tempor erat ex, in varius arcu suscipit vitae. Integer auctor velit diam, ut mattis sapien blandit vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam interdum tincidunt libero ac sollicitudin. Pellentesque vitae ligula sit amet lacus pellentesque vehicula. Phasellus laoreet nisi pulvinar, vulputate lectus vitae, vulputate purus. Vestibulum malesuada elementum diam eget faucibus. Nam imperdiet mollis nibh."
+      },
+      {
+        "id": "comment4",
+        "author": "a1",
+        "creationDate": 1576119600000,
+        "content": "Donec ac elit purus. Fusce maximus ipsum vel sapien convallis luct..."
+      },
+      {
+        "id": "comment5",
+        "author": "a2",
+        "creationDate": 1578193200000,
+        "content": "Ut ut ligula iaculis, pretium augue mollis, vulputate lacus. Duis in odio laoreet, tristique libero sed, lacinia enim. Suspendisse potenti. Sed tristique massa eu bibendum ultrices. Nulla pulvinar sodales mauris vel varius. Aliquam erat volutpat. Integer tempor, erat ut viverra tincidunt, mauris lorem fringilla ipsum, ac congue velit quam in turpis. Phasellus aliquam eros quis ipsum rhoncus porttitor. Donec quis ligula est. Pellentesque quis euismod lorem, a euismod ipsum.</p><br/><p>Cras arcu diam, sollicitudin."
+      },
+      {
+        "id": "comment6",
+        "author": "a4",
+        "creationDate": 1580785200000,
+        "content": "Suspendisse potenti. Sed tristique massa eu bibendum ultrices. Nulla pulvinar sodales mauris vel varius. Aliquam erat volutpat. Integer tempor."
+      }
+    ],
     "likes": []
   },
   {
@@ -63,7 +115,20 @@
       "c3",
       "c4"
     ],
-    "comments": [],
+    "comments": [
+      {
+        "id": "comment4",
+        "author": "a1",
+        "creationDate": 1576119600000,
+        "content": "Donec ac elit purus. Fusce maximus ipsum vel sapien convallis luct..."
+      },
+      {
+        "id": "comment5",
+        "author": "a2",
+        "creationDate": 1578193200000,
+        "content": "Vestibulum malesuada elementum diam eget faucibus. Nam imperdiet mollis nibh."
+      }
+    ],
     "likes": []
   }
 ]

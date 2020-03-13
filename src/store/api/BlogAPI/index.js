@@ -88,6 +88,8 @@ class BlogAPI {
   userLogout() {
     // Clear token
     localStorage.removeItem("authToken");
+
+    return retrieveDataDelayed(null, 0);
   }
 
   /**

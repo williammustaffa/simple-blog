@@ -6,9 +6,9 @@ import { getBlogAPIConnector } from "store/api/BlogAPI";
 /**
  * Check if credentials match on the database and redirect
  */
-export function* userLogin({ payload }) {
+export function* userLogout() {
   const connector = getBlogAPIConnector();
-  yield call(connector.userLogout, payload);
+  yield call(connector.userLogout);
 
   yield put(push("/"));
 } 
@@ -17,5 +17,5 @@ export function* userLogin({ payload }) {
  * Watch FETCH_POST action
  */
 export function* watchUserLogoutAsync() {
-  yield takeLatest(types.USER_LOGIN, userLogout);
+  yield takeLatest(types.USER_LOGOUT, userLogout);
 }

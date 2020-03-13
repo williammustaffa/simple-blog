@@ -26,10 +26,6 @@ function Navigation() {
           name="homes"
           onClick={navigateTo("/")}
         />
-        <Menu.Item
-          name="dashboard"
-          onClick={navigateTo("/dashboard")}
-        />
         <CategoryMenuItem />
 
 
@@ -41,6 +37,7 @@ function Navigation() {
             user.isLoggedIn ?
             <Dropdown item text={`${user.profile.firstName} ${user.profile.lastName}`}>
               <Dropdown.Menu>
+                <Dropdown.Item onClick={navigateTo("/dashboard")}>Dashboard</Dropdown.Item>
                 <Dropdown.Item onClick={onLogoutClick}>Log out</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown> :

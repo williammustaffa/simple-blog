@@ -4,17 +4,17 @@ import { push } from "connected-react-router";
 import { Grid, Header, Divider, Image, Icon, Label, Button } from "semantic-ui-react";
 import Spinner from "components/Spinner";
 import { fetchPost } from "store/actions";
+import CommentBlock from "components/CommentBlock";
 
 import "./style.scss";
-import CommentForm from "components/CommentForm";
 
 function PostDetailsView(props) {
   const { id } = props.match.params;
 
-  const { isFetching, post } = useSelector(state => ({
+  const { isFetching, post, isLoggedIn } = useSelector(state => ({
+    isLoggedIn: state.user.isLoggedIn,
     isFetching: state.post.isFetching,
     post: state.post.item,
-    errorMessage: state.post.errorMessage,
   }));
 
   const dispatch = useDispatch();
@@ -52,22 +52,24 @@ function PostDetailsView(props) {
           <div className="post-categories">
             {post.categories.map(renderCategoryLabel)}
           </div>
-          <div className="post-actions">
-            <span className="action-link link clickable" onClick={navigateTo(`/dashboard/post/${post.id}`)}>
-              <Icon name="edit" />Edit
-            </span>
-            <span className="action-link link clickable" onClick={deletePost}>
-              <Icon name="delete" />Delete
-            </span>
-          </div>
+          {
+            isLoggedIn &&
+            <div className="post-actions">
+              <span className="action-link link clickable" onClick={navigateTo(`/dashboard/post/${post.id}`)}>
+                <Icon name="edit" />Edit
+              </span>
+              <span className="action-link link clickable" onClick={deletePost}>
+                <Icon name="delete" />Delete
+              </span>
+            </div>
+          }
         </div>
         <Divider horizontal className="clearfix">
           <Header as="h4">Posted 25/05/12020 by <span className="link static">@{author.username}</span></Header>
         </Divider>
-        <div className="content clearfix">
+        <div className="post-content clearfix">
           <p dangerouslySetInnerHTML={{ __html: post.content }}></p>
         </div>
-        <Divider />
         <Button as="div" size="tiny" labelPosition="right">
           <Button>
             <Icon name="heart" />
@@ -77,7 +79,7 @@ function PostDetailsView(props) {
             2,048
           </Label>
         </Button>
-        <CommentForm />
+        <CommentBlock post={post} />
       </Grid.Column>
     </Grid>
   );

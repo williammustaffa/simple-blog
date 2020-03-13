@@ -1,4 +1,6 @@
 import Profile from "./Profile";
+import Comment from "./Comment";
+import Category from "./Category";
 
 class Post {
   constructor(payload = {}) {
@@ -8,8 +10,10 @@ class Post {
     this.creationDate = payload.creationDate || "";
     this.title = payload.title|| "";
     this.content = payload.content || "";
-    this.categories = payload.categories || [];
-    this.comments = payload.comments || [];
+    this.categories = (payload.categories || [])
+      .map(category => new Category(category));
+    this.comments = (payload.comments || [])
+      .map(comment => new Comment(comment));
     this.likes = payload.likes || [];
   }
 }

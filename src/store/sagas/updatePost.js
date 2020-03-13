@@ -10,7 +10,7 @@ export function* updatePost({ payload }) {
   try {
     const connector = getBlogAPIConnector();
     const result = yield call(connector.updatePost, payload);
-    console.log("PRAIA", payload);
+
     yield put(updatePostSuccess(result));
   } catch (e) {
     yield put(updatePostFailure(e));

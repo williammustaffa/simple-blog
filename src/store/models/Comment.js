@@ -1,13 +1,11 @@
-import Post from "./Post";
+import moment from "moment";
 
 class Comment {
   constructor(payload = {}) {
     this.id = payload.id || "";
     this.author = payload.author || "";
-    this.creationDate = payload.creationDate || "";
-    this.post = payload.post || new Post();
+    this.creationDate = moment(payload.creationDate).format('MMMM DD, YYYY');;
     this.content = payload.content || [];
-    this.ratings = payload.ratings || [];
   }
 }
 
