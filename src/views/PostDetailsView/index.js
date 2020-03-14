@@ -118,7 +118,7 @@ function PostDetailsView(props) {
           }
         </div>
         <Divider horizontal className="clearfix">
-          <Header as="h4">Posted 25/05/12020 by <span className="link static">@{post.author.username}</span></Header>
+          <Header as="h4">Posted {post.creationDate} by <span className="link static">@{post.author.username}</span></Header>
         </Divider>
         <div className="post-content clearfix">
           <p dangerouslySetInnerHTML={{ __html: post.content }}></p>

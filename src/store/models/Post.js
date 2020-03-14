@@ -1,3 +1,4 @@
+import moment from "moment";
 import Profile from "./Profile";
 import Comment from "./Comment";
 import Category from "./Category";
@@ -8,7 +9,7 @@ class Post {
     this.id = payload.id || "";
     this.imageUrl = payload.imageUrl || "";
     this.author = new Profile(payload.author);
-    this.creationDate = payload.creationDate || "";
+    this.creationDate = moment(payload.creationDate).format("DD/MM/YYYY") || "";
     this.title = payload.title|| "";
     this.content = payload.content || "";
     this.categories = (payload.categories || [])
