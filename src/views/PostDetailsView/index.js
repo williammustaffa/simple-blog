@@ -105,17 +105,20 @@ function PostDetailsView(props) {
           <div className="post-categories">
             {post.categories.map(renderCategoryLabel)}
           </div>
-          {
-            isLoggedIn &&
-            <div className="post-actions">
+          <div className="post-actions">
+            {
+              post.roles.includes("write") &&
               <span className="action-link link clickable" onClick={navigateTo(`/dashboard/post/${post.id}`)}>
                 <Icon name="edit" />Edit
               </span>
+            }
+            {
+              post.roles.includes("delete") &&
               <span className="action-link link clickable" onClick={openDeleteModal}>
                 <Icon name="delete" />Delete
               </span>
-            </div>
-          }
+            }
+          </div>
         </div>
         <Divider horizontal className="clearfix">
           <Header as="h4">Posted {post.creationDate} by <span className="link static">@{post.author.username}</span></Header>
@@ -126,9 +129,7 @@ function PostDetailsView(props) {
         {
           isLoggedIn ?
           likeButton :
-          <Popup trigger={likeButton} content="Login or Register to like this post!" inverted>
-
-          </Popup>
+          <Popup trigger={likeButton} content="Login or Register to like this post!" inverted />
         }
         <CommentBlock post={post} />
       </Grid.Column>

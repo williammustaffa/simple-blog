@@ -11,6 +11,18 @@ A simple blog application using the React Hooks, Redux, Redux-Saga and localStor
 | james.manco@mail.com | 12345 |
 | mate.demon@mail.com | 12345 |
 
+## Users
+- User is only able to edit, remove posts created by himself.
+- User is only able to comment and/or like a post when logged in.
+- All users are able to visualize the dashboard data.
+
+## Posts
+- Posts are sorted by creation date (DESC) on home/search pages.
+- Comments are sorted by creation date (DESC) on post details page.
+
+## TODO
+- Create auth verification at dashboard level. Currently users can access the edit post page from other user by accessing the edit post URL manually.
+- Fix header arrangement on mobile
 
 ## Available Scripts
 

@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Grid, Header } from "semantic-ui-react";
+import { push } from "connected-react-router";
 import { fetchPost } from "store/actions";
+import { Grid, Header } from "semantic-ui-react";
 import PostForm from "components/PostForm";
 import Spinner from "components/Spinner";
 import { updatePost } from "store/actions";
@@ -22,7 +23,7 @@ function EditPostView(props) {
   // Component did mount
   useEffect(() => {
     // Request post data
-    dispatch(fetchPost(id));
+    dispatch(fetchPost(id, true));
   }, [dispatch, id]);
 
   function onSubmit(data) {

@@ -20,8 +20,10 @@ const tokenize = ({ id, email }) => {
   return btoa(JSON.stringify({ id, email }));
 }
 
-const getTokenizedInfo = token => {
-  return token && JSON.parse(atob(token));
+const getTokenizedInfo = () => {
+  const authToken = localStorage.getItem("authToken");
+
+  return authToken && JSON.parse(atob(authToken));
 }
 
 class BlogAPI {
@@ -30,6 +32,14 @@ class BlogAPI {
    * @param {object} post 
    */
   populatePostData = (post) => {
+    // Populate roles
+    post.roles = [];
+
+    const data = getTokenizedInfo();
+    if (data && data.id === post.author) {
+      post.roles.push("write", "delete");
+    }
+
     // Fetch categories data
     post.categories = post.categories.map(categoryId => {
       return database.queryAll("categories", {
@@ -115,12 +125,10 @@ class BlogAPI {
    * Check user session an then populate data if needed
    */
   userCheckSession = () => {
-    const authToken = localStorage.getItem("authToken");
-
-    const data = getTokenizedInfo(authToken);
+    const data = getTokenizedInfo();
 
     const results = database.queryAll("profiles", {
-      query: { id: data.id },
+      query: { id: data && data.id },
     });
 
     if (!results.length) {
@@ -306,7 +314,10 @@ class BlogAPI {
         }
   
         return true;
-      }
+      },
+      sort: [
+        ["creationDate", "DESC"],
+      ],
     });
 
     const posts = clone(results).map(this.populatePostData);

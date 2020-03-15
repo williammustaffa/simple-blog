@@ -18,6 +18,7 @@ class Post {
       .map(comment => new Comment(comment));
     this.likes = payload.likes || [];
     this.url = buildPostUrl(payload);
+    this.roles = payload.roles || [];
   }
 }
 
