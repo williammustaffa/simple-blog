@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { push } from "connected-react-router";
 import { fetchPost } from "store/actions";
 import { Grid, Header } from "semantic-ui-react";
 import PostForm from "components/PostForm";
@@ -27,7 +26,20 @@ function EditPostView(props) {
   }, [dispatch, id]);
 
   function onSubmit(data) {
-    dispatch(updatePost(data));
+    dispatch(updatePost(
+      data,
+      onSubmitSuccess,
+      onSubmitFailure
+    ));
+  }
+
+  // This can be used to provide the user some feedback regarding his action
+  function onSubmitSuccess(transaction) {
+    console.log("Testing dispatch success", transaction)
+  }
+
+  function onSubmitFailure(error) {
+    console.log("Testing dispatch failure", error)
   }
 
   if (isFetching) {

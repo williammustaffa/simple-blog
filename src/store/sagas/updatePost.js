@@ -6,14 +6,16 @@ import { updatePostSuccess, updatePostFailure } from "store/actions";
 /**
  * Update post by given id
  */
-export function* updatePost({ payload }) {
+export function* updatePost({ payload, resolve, reject }) {
   try {
     const connector = getBlogAPIConnector();
     const result = yield call(connector.updatePost, payload);
 
     yield put(updatePostSuccess(result));
+    resolve(result);
   } catch (e) {
     yield put(updatePostFailure(e));
+    reject(e);
   }
 } 
 

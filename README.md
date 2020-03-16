@@ -24,6 +24,7 @@ A simple blog application using the React Hooks, Redux, Redux-Saga and localStor
 - Create auth verification at dashboard level. Currently users can access the edit post page from other user by accessing the edit post URL manually.
 - Remove comments and likes data from post table. Create a table for each and use relational data.
 - Fix header arrangement on mobile
+- Add a visual feedback (possibly a notification bar) for user actions like update, delete and remove post.
 
 ## Available Scripts
 

@@ -1,7 +1,11 @@
 export default function buildPostUrl(post) {
   if (!post.id) return null;
 
-  return `/post/${post.id}/${post.title}`
+  const postId = post.id;
+  const postTitle = post.title
+    .replace(/[^\w\d\s]/g, "")
     .replace(/\s/gi, "-")
-    .toLocaleLowerCase();
+    .toLocaleLowerCase();;
+
+  return `/post/${postId}/${postTitle}`;
 }
