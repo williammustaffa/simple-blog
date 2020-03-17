@@ -26,8 +26,6 @@ A simple blog application using the React Hooks, Redux, Redux-Saga and localStor
 - Fix header arrangement on mobile
 - Add a visual feedback (possibly a notification bar) for user actions like update, delete and remove post.
 
-## Available Scripts
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 
 ## Available Scripts
